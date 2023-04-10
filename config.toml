@@ -1,7 +1,7 @@
 baseURL = "https://jackcollins.me.uk"
 title   = "Jack Collins"
 languageCode = "en-us"
-theme = "hello-friend-ng"
+theme = "hugo-theme-hello-friend-ng"
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"

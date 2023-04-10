@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Jack Collins]">
+<meta name="description" content="Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &amp;lsquo;Network Mapper&amp;rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&amp;rsquo;s source code. The community at the time were so impressed with it&amp;rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
+Since it&amp;rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities." />
+<meta name="keywords" content=", pentesting, cheatsheet, nmap" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://jackcollins.me.uk/articles/nmap/" />
+
+
+    <title>
+        
+            An overview of Nmap :: Jack Collins  — Linux Admin | Security | Automation | UK
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="https://jackcollins.me.uk/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css" integrity="sha256-t4w76UUdxMphyjd/PcLPLmNFpEwrrkYhajIu82bao5k=">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://jackcollins.me.uk/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://jackcollins.me.uk/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://jackcollins.me.uk/favicon-16x16.png">
+    <link rel="manifest" href="https://jackcollins.me.uk/site.webmanifest">
+    <link rel="mask-icon" href="https://jackcollins.me.uk/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://jackcollins.me.uk/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="An overview of Nmap">
+<meta itemprop="description" content="Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &lsquo;Network Mapper&rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&rsquo;s source code. The community at the time were so impressed with it&rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
+Since it&rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities."><meta itemprop="datePublished" content="2023-03-02T20:14:52+01:00" />
+<meta itemprop="dateModified" content="2023-03-02T20:14:52+01:00" />
+<meta itemprop="wordCount" content="2230"><meta itemprop="image" content="https://jackcollins.me.uk"/>
+<meta itemprop="keywords" content="pentesting,cheatsheet,nmap," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://jackcollins.me.uk"/>
+
+<meta name="twitter:title" content="An overview of Nmap"/>
+<meta name="twitter:description" content="Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &lsquo;Network Mapper&rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&rsquo;s source code. The community at the time were so impressed with it&rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
+Since it&rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities."/>
+
+
+
+    <meta property="og:title" content="An overview of Nmap" />
+<meta property="og:description" content="Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &lsquo;Network Mapper&rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&rsquo;s source code. The community at the time were so impressed with it&rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
+Since it&rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jackcollins.me.uk/articles/nmap/" /><meta property="og:image" content="https://jackcollins.me.uk"/><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2023-03-02T20:14:52+01:00" />
+<meta property="article:modified_time" content="2023-03-02T20:14:52+01:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2023-03-02 20:14:52 &#43;0100 &#43;0100" />
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://jackcollins.me.uk/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                jackcollins.me.uk$ </span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://jackcollins.me.uk/articles">Articles</a></li><li><a href="https://jackcollins.me.uk/documents/CV_Jack_Collins_Linux_Admin_2023.pdf">Download CV</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://jackcollins.me.uk/articles/nmap/">An overview of Nmap</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#usage">Usage Examples</a></li>
+<li><a href="#cheatsheet">Cheatsheet</a></li>
+<li><a href="#official">Official Documentation</a></li>
+<li><a href="#drawbacks">Drawbacks</a></li>
+<li><a href="#similar">Similar Tools</a></li>
+</ul>
+<hr>
+<h2 id="background">Background</h2>
+<p>Nmap, or &lsquo;Network Mapper&rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&rsquo;s source code. The community at the time were so impressed with it&rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.</p>
+<p>Since it&rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities. Nowadays, Nmap is capable of fingerprinting operating systems, recognising services running on ports, running custom scripts and now supports IPv6.</p>
+<hr>
+<h2 id="usage">Usage Examples</h2>
+<p>Nmap is an open-source network scanner for discovering hosts on a network and services running on those hosts, by sending various types of network packets and analysing the results that come back.</p>
+<p>It can;</p>
+<ul>
+<li>Identify what hosts are on a network and their IP address</li>
+<li>See which ports are open and responding on those hosts</li>
+<li>Detect which version of applications are broadcasting on each of those ports</li>
+<li>Determine which Operating System is installed on a host</li>
+<li>Provide custom scripting capabilities using the Nmap Scripting Engine and the Lua programming language.</li>
+</ul>
+<p>These capabilities provide network administrators the ability to audit the security of their devices, spot unrecognised devices connecting to a network, provide automated inventory management and test firewall and port configurations.<br>
+Of course, all of this comes with a cost; Nmap can also be used nefariously by hackers, to recon information about potential targets.</p>
+<p>One thing to note, about Nmap scans, is that they can be intrusive; that is, they aren&rsquo;t always silent and they can even cause disruption if too many queries are sprayed at a certain IP/port. For this reason, it should be used with knowledge and caution. Pentesters need to be aware of which scans are easily detectable, which can be researched via the official documentation, linked lower on this page.</p>
+<p>Let&rsquo;s look at some example scenarios and commands. To do a simple &lsquo;ping sweep&rsquo; of a network, identifying what hosts are currently up and responding, but without anything further, we can run;</p>
+<pre tabindex="0"><code>nmap -sn 192.168.1.0/24
+</code></pre><p>This basic ping sweep can be a useful method for administrators to automate detection of servers on a given network, alerting against unrecognised machines appearing, or simply to monitor server availability. In a home setting, I often use it to discover the IP address of new devices I&rsquo;ve added to my 192.168.1 subnet, and to automate alerting of new devices appearing which I may not be expecting.</p>
+<p>Let&rsquo;s have a look at something that returns a bit more information;</p>
+<pre tabindex="0"><code>nmap -v -sV -sC 192.168.1.0/24
+</code></pre><p>Breaking this command down, we&rsquo;re asking Nmap to;</p>
+<ul>
+<li>give &lsquo;level 1&rsquo; verbose output, useful for seeing the discovery of ports in real time, rather than waiting for a full scan to complete, which can take a while.</li>
+<li>use a non-specific set of Scripts, which uses a default set of Lua scripts with more in-depth capabilities than the default Nmap application has. Although these are often far more intrusive and detectable, they also often give better results when completing Capture The Flag scenarios, for example, although on an actual pentesting scenario, you&rsquo;d likely want to refrain from just &lsquo;spraying and praying&rsquo; with scripts.</li>
+<li>use Version Detection. Once a TCP/UDP port is discovered, Nmap will attempt to interrogate the port to see what is actually running on it.</li>
+</ul>
+<p>The above command might give output similar to the below (-v verbosity removed so it actually fits on the page);</p>
+<pre tabindex="0"><code>kali@somewhere:~$ sudo nmap -sV -sS 192.168.1.0/24
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-03-04 16:34 UTC
+
+Nmap scan report for 192.168.1.100
+Host is up (0.00075s latency).
+Not shown: 994 closed ports
+PORT STATE SERVICE VERSION
+22/tcp open ssh OpenSSH 4.3 (protocol 2.0)
+80/tcp open http Apache httpd 2.2.3 ((CentOS))
+111/tcp open rpcbind 2 (rpc #100000)
+957/tcp open status 1 (rpc #100024)
+3306/tcp open mysql MySQL (unauthorized)
+8888/tcp open http lighttpd 1.4.32
+MAC Address: 08:00:27:##:##:## (Cadmus Computer Systems)
+Service Info: OS: Linux; Device: WAP
+
+Nmap scan report for 192.168.1.200
+Host is up (0.013s latency).
+All 1000 scanned ports on 192.168.1.200 are closed
+MAC Address: B8:27:EB:##:##:## (Raspberry Pi Foundation)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/
+Nmap done: 256 IP addresses (2 hosts up) scanned in 60.99 seconds
+</code></pre><p>As you can see, just from a quick 1 minute scan of the local subnet, 256 potential IP addresses, we&rsquo;ve identified 2 IPs that are responding and at least 1 of them has multiple ports open with various services running. We even have the service versions, which a penetration tester could then use to search for vulnerabilities out on the internet, or via tools such as <a href="https://www.exploit-db.com/searchsploit">Searchsploit</a>.</p>
+<p>Whilst the above general scan is good for early endeavours in to Capture The Flag scenarios, we&rsquo;ll want to do incorporate more advanced and targeted scans for advanced CTFs and real-life pentesting scenarios. This may be because we need to avoid detection from Intrusion Prevention, <a href="https://nmap.org/book/man-bypass-firewalls-ids.html">circumnavigate a firewall</a> or generally just be stealthier. The scan above, with the inclusion of the sC option to use various default scripts, is very &lsquo;loud&rsquo; on a network and can easily be detected. You may even find your IP automatically blocked from sending and receiving further packets.</p>
+<p>Let&rsquo;s take a look at a &lsquo;stealthy&rsquo; scan, one that is much less likely to be detected as potentially malicious;</p>
+<pre tabindex="0"><code>nmap -sS -p80 -T1 -f --data-length 55 --spoof-mac 0 192.168.1.100
+</code></pre><p>Here, we are;</p>
+<ul>
+<li>running a TCP SYN scan, using sS, which is non obtrusive and stealthy, since it never completes TCP connections</li>
+<li>Scanning port 80 only (don&rsquo;t try and run this really slow scan against more than a couple of ports)</li>
+<li>Using timing template 1, which only scans one port at a time (no parallelism) and sets a minimum of 15 seconds between packets (this can take an extraordinary long time though, so it would be best to narrow a scan using T0-2 down to just a few ports on a singular host)</li>
+<li>Fragment the IP packets sent. This will split up the TCP header over several packets to make it harder for packet filters, IDS and other annoyances to detect what you are doing</li>
+<li>Normally Nmap sends packets that only contain a header. But constant sending of this size of packet can be noted by IDS. So, we bulk out the packets with a little more data, making them look like they contain actual information rather than just being &lsquo;empty&rsquo;</li>
+<li>Randomise our MAC address using option 0 of spoof-mac, or you can specify a specific MAC if you know of devices on a network that would look less suspicious</li>
+</ul>
+<p>There are also options such as &ndash;randomize-hosts (if you are scanning a large list of IPs/a subnet, randomise the order in which they are scanned to make it slightly less obvious a pattern to IDS and administrators) and &ndash;proxies (so that you can proxy your scan, however other parameters may need to be adjusted so that this doesn&rsquo;t time out).<br>
+The &lsquo;sneaky&rsquo; scan above could take a very long time to complete, even up to a few days, but is much &lsquo;quieter&rsquo; on a network. Although, it&rsquo;s important to note that, given modern detection systems, there is no truly silent scan. Most Nmap scan methods can be picked up in some way or another, however that also brings me on to an additional option to obfuscate yourself during pentest reconnaissance, which is also a technique used for other hacking steps such as exploitation; something I like to call &lsquo;obfuscation via too much information&rsquo;;</p>
+<pre tabindex="0"><code>nmap -D 192.168.1.2,192.168.1.3,192.168.1.4 192.168.1.100
+</code></pre><p>This command will run an nmap scan (with whatever other options you want to give), but will also make it look as though our scan is coming from 3 IP addresses. You&rsquo;ll need to include your own IP/the machine running the nmap scan in the IP range, but many, many IP addresses can be specified. Essentially, this means an administrator/investigator in to your activity wouldn&rsquo;t be able to tell which IP the scan actually came from, out of the list, and would have to investigate them all. Therefore, specifying hundreds of IPs could be worth while if complete anonymity is required (this site does not condone malicious use of nmap).<br>
+Of course, this won&rsquo;t let you circumnavigate IDS or Firewalls, but it could hide your identity. If you don&rsquo;t pass many IP addresses to a target, your singular attack vector will be viewable in log files on target systems (unless you manage to gain access to clear them, but that&rsquo;s another topic for another day).</p>
+<p>There are many more options and capabilities within Nmap.<br>
+A cheat-sheet is included below, with examples of most of the remaining options, as well as a link to the official documentation so you can further your own research. Of course, you can also simply do a man Nmap within Linux.</p>
+<hr>
+<h2 id="cheatsheet">Cheatsheet</h2>
+<p><code>nmap -sn 192.168.1.100</code>	A simple &lsquo;ping scan&rsquo; of one IP, to see if it&rsquo;s up</p>
+<p><code>nmap -Pn 192.168.1.100</code>	Disable host discovery, just scan ports</p>
+<p><code>nmap 192.168.1.100</code>	Scan one IP with default nmap settings</p>
+<p><code>nmap 192.168.1.1-254</code>	Scan a range of IPs</p>
+<p><code>nmap 192.168.1.0/24</code>	Scan a subnet using CIDR notation</p>
+<p><code>nmap -iL targets.txt</code>	Scan a list of targets from a file</p>
+<p><code>nmap -sS 192.168.1.100</code>	TCP SYN port scan (the default)</p>
+<p><code>nmap -sT 192.168.1.100</code>	TCP connect port scan (default non-root scan)</p>
+<p><code>nmap -sU 192.168.1.100</code>	UDP port scan</p>
+<p><code>nmap -sA 192.168.1.100</code>	TCP ACK port scan</p>
+<p><code>nmap -sW 192.168.1.100</code>	TCP Window port scan</p>
+<p><code>nmap -sM 192.168.1.100</code>	TCP Maimon port scan</p>
+<p><code>nmap -sV 192.168.1.100</code>	Version detection for found services</p>
+<p><code>nmap -O 192.168.1.100</code>	OS detection</p>
+<p><code>nmap -A 192.168.1.100</code>	OS detection, version detection, script scanning and traceroute</p>
+<p><code>nmap -sC 192.168.1.100</code>	Scan with the default NSE scripts</p>
+<p><code>nmap --script=banner 192.168.1.100</code>	Scan using a specific NSE script</p>
+<p><code>nmap -n 192.168.1.0/24</code>	Don&rsquo;t use DNS resolution</p>
+<p><code>nmap -PR 192.168.1.0/24</code>	ARP discovery on local subnet</p>
+<p><code>nmap -p 80 192.168.1.100</code>	Scan one port only</p>
+<p><code>nmap -p 80-1000 192.168.1.100</code>	Scan a range of ports only</p>
+<p><code>nmap -p- 192.168.1.100</code>	Scan all 65,535 available ports (slow)</p>
+<p><code>nmap -F 192.168.1.100</code>	Fast scan, look for the most popular 100 ports</p>
+<p><code>nmap -T3 192.168.1.100</code>	The default performance and timing profile</p>
+<p><code>nmap -T2 192.168.1.100</code>	Polite scan profile, sneakier</p>
+<p><code>nmap -T4 192.168.100</code>	Aggressive scan profile, faster but needs a good connection and is louder</p>
+<p><code>nmap -D 192.168.1.1,192.168.1.2,192.168.1.3 192.168.1.100</code>	Spoof IPs that a scan originates from. Include your own IP.</p>
+<p><code>nmap --proxies http://192.168.1.200:8080 192.168.1.100</code>	Scan via proxies</p>
+<p><code>nmap -oN output.file 192.168.1.100</code>	Output scan results to a file, using default format</p>
+<p><code>nmap -v 192.168.1.100</code>	Increase verbosity of output. Recommended, as else you have to wait for a full scan to complete in order to see found ports.</p>
+<hr>
+<h2 id="official">Official Documentation</h2>
+<p><a href="https://nmap.org/docs.html">Official Documentation - https://nmap.org/docs.html</a></p>
+<hr>
+<h2 id="drawbacks">Drawbacks</h2>
+<p>Ironically, one of the major drawbacks of Nmap, for penetration testers, is that it&rsquo;s so popular. Sometimes companies may have monitoring in place that looks for Nmap scans specifically, or at least make a log of scan attempts, however other port scannings tools may fall prey to this as well.<br>
+Nmap scans are always happening, all over the internet, all the time, though. Script Kiddies will regularly scan huge IP ranges looking for vulnerabilities anywhere on the web. So, often, Nmap scans can go overlooked when they are sprayed at an external internet-facing server. However, internally on a network that you may be pentesting against, this activity becomes less of the &lsquo;norm&rsquo; and far more distinguishable, especially if the scans follow a pattern.</p>
+<p>Common Port Scan Detectors include <a href="https://sourceforge.net/projects/sentrytools/">PortSentry</a> and <a href="https://www.openwall.com/scanlogd/">Scanlogd</a>, and there are many Intrusion Detection Systems such as the one included with <a href="https://www.trendmicro.com/">Trend Micro</a>. They work pretty well.</p>
+<p>Lastly, there&rsquo;s <a href="https://www.snort.org/">Snort</a>. It&rsquo;s a very popular and open-source Intrusion Prevention System that has the capability of watching for Nmap scans.</p>
+<hr>
+<h2 id="similar">Similar Tools</h2>
+<h4 id="zenmap">Zenmap</h4>
+<p><a href="https://nmap.org/zenmap/">Zenmap</a> is the official open-source GUI for Nmap.<br>
+It makes Nmap scanning easier for beginners whilst providing some more advanced features for experienced users. You can save frequently used scans as profiles, output scan data to external files to be viewed later and compare scan results for differences.
+It also has, of course, GUI capabilities that make viewing and understanding the layout of larger networks easier, for example in the form of Spider Graphs.</p>
+<h4 id="unicornscan">Unicornscan</h4>
+<p><a href="http://www.unicornscan.org/">Unicornscan</a> has a TCP/IP stack, a distinguishing feature that sets it apart from other port scanners.
+It also allows asynchronous TCP and UDP scanning.<br>
+Scanning can therefore be much quicker with Unicornscan, than with other portscanners, because they use the target’s operating system’s TCP/IP stack.</p>
+<h4 id="angry-ip-scan">Angry IP Scan</h4>
+<p><a href="https://angryip.org/">Angry IP Scan</a> runs nicely on Linux, Windows, and Mac OS X, with a full GUI a little similar to Zenmap.<br>
+One of the best things about Angry IP Scanner is that it doesn&rsquo;t require installation. It can simply be carried around on a USB stick and used on-the-fly! It&rsquo;s therefore perfect for penetration testers doing in-the-field reconnaissance, or simply administrators that require a portable scanning solution.</p>
+<h4 id="rustscan">RustScan</h4>
+<p><a href="https://github.com/RustScan/RustScan">Rustscan</a> actually runs nmap, but enhances it&rsquo;s speed and capabilities. I would highly recommend it!<br>
+When running, RustScan conducts a preliminary scan using its own internal discovery technique: it creates sockets against its targets and waits for their responses.<br>
+Once this first scanning stage is completed it executes a second round using Nmap as the tool with specific tags that, by default, aim to discover the targets’ operating systems.</p>
+<p>The adaptive algorithms and initial scanning techniques of Rustscan make it super fast, greatly reducing the time Nmap scans take.</p>
+<hr>
+<p><a href="#top">Top of page</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/pentesting/">pentesting</a></span>
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/cheatsheet/">cheatsheet</a></span>
+        <span class="tag"><a href="https://jackcollins.me.uk/tags/nmap/">nmap</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Created in Linux CLI using <a href="http://gohugo.io">Hugo</a></span><span>Self Hosted via AWS Amplify</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://jackcollins.me.uk/bundle.min.644292943ae47eef02fcd64b11757aeb8caeeaebf473a823b62099edccac808e8d82689359f285e5d95994e5ad5ae3b9c1ccc281eb1828e67d0ba6630f95b832.js" integrity="sha512-ZEKSlDrkfu8C/NZLEXV664yu6uv0c6gjtiCZ7cysgI6NgmiTWfKF5dlZlOWtWuO5wczCgesYKOZ9C6ZjD5W4Mg=="></script>
+
+
+
+    </body>
+</html>
