@@ -1,4 +1,4 @@
-baseURL = "https://jackcollins.me.uk"
+baseURL = "/"
 title   = "Jack Collins"
 languageCode = "en-us"
 theme = "hugo-theme-hello-friend-ng"
