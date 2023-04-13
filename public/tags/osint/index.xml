@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>osint on Jack Collins</title>
-    <link>https://jackcollins.me.uk/tags/osint/</link>
+    <link>https://www.jackcollins.me.uk/tags/osint/</link>
     <description>Recent content in osint on Jack Collins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 19 Jan 2023 17:50:57 +0100</lastBuildDate><atom:link href="https://jackcollins.me.uk/tags/osint/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Jan 2023 17:50:57 +0100</lastBuildDate><atom:link href="https://www.jackcollins.me.uk/tags/osint/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specific Site OSINT</title>
-      <link>https://jackcollins.me.uk/articles/specific_site_osint/</link>
+      <link>https://www.jackcollins.me.uk/articles/specific_site_osint/</link>
       <pubDate>Thu, 19 Jan 2023 17:50:57 +0100</pubDate>
       
-      <guid>https://jackcollins.me.uk/articles/specific_site_osint/</guid>
+      <guid>https://www.jackcollins.me.uk/articles/specific_site_osint/</guid>
       <description>During pentesting, specifically during pre-engagement OSINT, we&amp;rsquo;ll want to make use of various social media websites to gather information about our target.
 This page is dedicated to listing specific details about some of the major social media sites, and how to go about gathering data from them.
 Note: Intelligence X Tools are good for a number of these sites.
@@ -22,10 +22,10 @@ Note: Intelligence X Tools are good for a number of these sites.
     
     <item>
       <title>Useful Pentesting Links</title>
-      <link>https://jackcollins.me.uk/articles/pentestinglinks/</link>
+      <link>https://www.jackcollins.me.uk/articles/pentestinglinks/</link>
       <pubDate>Mon, 02 Jan 2023 10:02:34 +0100</pubDate>
       
-      <guid>https://jackcollins.me.uk/articles/pentestinglinks/</guid>
+      <guid>https://www.jackcollins.me.uk/articles/pentestinglinks/</guid>
       <description>A list of useful URLs, for all steps and aspects of a Penetration Test.
 This list will be updated as I discover more resources.
 If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.

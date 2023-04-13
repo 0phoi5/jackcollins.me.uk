@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>aws on Jack Collins</title>
-    <link>https://jackcollins.me.uk/tags/aws/</link>
+    <link>https://www.jackcollins.me.uk/tags/aws/</link>
     <description>Recent content in aws on Jack Collins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 23 Feb 2023 20:06:30 +0100</lastBuildDate><atom:link href="https://jackcollins.me.uk/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Feb 2023 20:06:30 +0100</lastBuildDate><atom:link href="https://www.jackcollins.me.uk/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Amazon Workspaces on RHEL based distros</title>
-      <link>https://jackcollins.me.uk/articles/rhel_workspaces/</link>
+      <link>https://www.jackcollins.me.uk/articles/rhel_workspaces/</link>
       <pubDate>Thu, 23 Feb 2023 20:06:30 +0100</pubDate>
       
-      <guid>https://jackcollins.me.uk/articles/rhel_workspaces/</guid>
+      <guid>https://www.jackcollins.me.uk/articles/rhel_workspaces/</guid>
       <description>Amazon Workspaces is a brilliant offering by AWS to allow users access to Windows 10 (or Amazon Linux) based Virtual Machines in the cloud, from anywhere in the world. Unlike EC2, it much more easily scales up for companies to allow remote and cloud based, Active-Directory integrated fleets of VMs for employees. However we can also use it on an individual scale to give access to a true Windows 10 box (not Windows server 2019) from anywhere in the World, without the need for using local CPU, RAM and disk resources for the VM.</description>
     </item>
     
