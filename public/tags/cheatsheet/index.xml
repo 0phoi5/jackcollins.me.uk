@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cheatsheet on Jack Collins</title>
-    <link>master.d2jdokcipccg5c.amplifyapp.com/tags/cheatsheet/</link>
+    <link>/tags/cheatsheet/</link>
     <description>Recent content in cheatsheet on Jack Collins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 02 Mar 2023 20:14:52 +0100</lastBuildDate><atom:link href="master.d2jdokcipccg5c.amplifyapp.com/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Mar 2023 20:14:52 +0100</lastBuildDate><atom:link href="/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An overview of Nmap</title>
-      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/nmap/</link>
+      <link>/articles/nmap/</link>
       <pubDate>Thu, 02 Mar 2023 20:14:52 +0100</pubDate>
       
-      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/nmap/</guid>
+      <guid>/articles/nmap/</guid>
       <description>Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &amp;lsquo;Network Mapper&amp;rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&amp;rsquo;s source code. The community at the time were so impressed with it&amp;rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
 Since it&amp;rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities.</description>
     </item>

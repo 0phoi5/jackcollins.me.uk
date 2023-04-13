@@ -2,65 +2,65 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/htb_example/</loc>
+    <loc>/articles/htb_example/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/</loc>
+    <loc>/articles/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/hackthebox/</loc>
+    <loc>/tags/hackthebox/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/</loc>
+    <loc>/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/pentesting/</loc>
+    <loc>/tags/pentesting/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/walkthrough/</loc>
+    <loc>/tags/walkthrough/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/nmap/</loc>
+    <loc>/articles/nmap/</loc>
     <lastmod>2023-03-02T20:14:52+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/cheatsheet/</loc>
+    <loc>/tags/cheatsheet/</loc>
     <lastmod>2023-03-02T20:14:52+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/nmap/</loc>
+    <loc>/tags/nmap/</loc>
     <lastmod>2023-03-02T20:14:52+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/rhel_workspaces/</loc>
+    <loc>/articles/rhel_workspaces/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/aws/</loc>
+    <loc>/tags/aws/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/github/</loc>
+    <loc>/tags/github/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/linux/</loc>
+    <loc>/tags/linux/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/rhel/</loc>
+    <loc>/tags/rhel/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/osint/</loc>
+    <loc>/tags/osint/</loc>
     <lastmod>2023-01-19T17:50:57+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/tags/social-media/</loc>
+    <loc>/tags/social-media/</loc>
     <lastmod>2023-01-19T17:50:57+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/specific_site_osint/</loc>
+    <loc>/articles/specific_site_osint/</loc>
     <lastmod>2023-01-19T17:50:57+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/articles/pentestinglinks/</loc>
+    <loc>/articles/pentestinglinks/</loc>
     <lastmod>2023-01-02T10:02:34+01:00</lastmod>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/categories/</loc>
+    <loc>/categories/</loc>
   </url><url>
-    <loc>master.d2jdokcipccg5c.amplifyapp.com/series/</loc>
+    <loc>/series/</loc>
   </url>
 </urlset>
