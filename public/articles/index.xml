@@ -2,47 +2,47 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Articles on Jack Collins</title>
-    <link>https://www.jackcollins.me.uk/articles/</link>
+    <link>master.d2jdokcipccg5c.amplifyapp.com/articles/</link>
     <description>Recent content in Articles on Jack Collins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 10 Apr 2023 20:15:08 +0100</lastBuildDate><atom:link href="https://www.jackcollins.me.uk/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Apr 2023 20:15:08 +0100</lastBuildDate><atom:link href="master.d2jdokcipccg5c.amplifyapp.com/articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A very basic HackTheBox pentest example</title>
-      <link>https://www.jackcollins.me.uk/articles/htb_example/</link>
+      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/htb_example/</link>
       <pubDate>Mon, 10 Apr 2023 20:15:08 +0100</pubDate>
       
-      <guid>https://www.jackcollins.me.uk/articles/htb_example/</guid>
+      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/htb_example/</guid>
       <description>Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&amp;rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&amp;rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
 We&amp;rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information.</description>
     </item>
     
     <item>
       <title>An overview of Nmap</title>
-      <link>https://www.jackcollins.me.uk/articles/nmap/</link>
+      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/nmap/</link>
       <pubDate>Thu, 02 Mar 2023 20:14:52 +0100</pubDate>
       
-      <guid>https://www.jackcollins.me.uk/articles/nmap/</guid>
+      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/nmap/</guid>
       <description>Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &amp;lsquo;Network Mapper&amp;rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&amp;rsquo;s source code. The community at the time were so impressed with it&amp;rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
 Since it&amp;rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities.</description>
     </item>
     
     <item>
       <title>Amazon Workspaces on RHEL based distros</title>
-      <link>https://www.jackcollins.me.uk/articles/rhel_workspaces/</link>
+      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/rhel_workspaces/</link>
       <pubDate>Thu, 23 Feb 2023 20:06:30 +0100</pubDate>
       
-      <guid>https://www.jackcollins.me.uk/articles/rhel_workspaces/</guid>
+      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/rhel_workspaces/</guid>
       <description>Amazon Workspaces is a brilliant offering by AWS to allow users access to Windows 10 (or Amazon Linux) based Virtual Machines in the cloud, from anywhere in the world. Unlike EC2, it much more easily scales up for companies to allow remote and cloud based, Active-Directory integrated fleets of VMs for employees. However we can also use it on an individual scale to give access to a true Windows 10 box (not Windows server 2019) from anywhere in the World, without the need for using local CPU, RAM and disk resources for the VM.</description>
     </item>
     
     <item>
       <title>Specific Site OSINT</title>
-      <link>https://www.jackcollins.me.uk/articles/specific_site_osint/</link>
+      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/specific_site_osint/</link>
       <pubDate>Thu, 19 Jan 2023 17:50:57 +0100</pubDate>
       
-      <guid>https://www.jackcollins.me.uk/articles/specific_site_osint/</guid>
+      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/specific_site_osint/</guid>
       <description>During pentesting, specifically during pre-engagement OSINT, we&amp;rsquo;ll want to make use of various social media websites to gather information about our target.
 This page is dedicated to listing specific details about some of the major social media sites, and how to go about gathering data from them.
 Note: Intelligence X Tools are good for a number of these sites.
@@ -51,10 +51,10 @@ Note: Intelligence X Tools are good for a number of these sites.
     
     <item>
       <title>Useful Pentesting Links</title>
-      <link>https://www.jackcollins.me.uk/articles/pentestinglinks/</link>
+      <link>master.d2jdokcipccg5c.amplifyapp.com/articles/pentestinglinks/</link>
       <pubDate>Mon, 02 Jan 2023 10:02:34 +0100</pubDate>
       
-      <guid>https://www.jackcollins.me.uk/articles/pentestinglinks/</guid>
+      <guid>master.d2jdokcipccg5c.amplifyapp.com/articles/pentestinglinks/</guid>
       <description>A list of useful URLs, for all steps and aspects of a Penetration Test.
 This list will be updated as I discover more resources.
 If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.
