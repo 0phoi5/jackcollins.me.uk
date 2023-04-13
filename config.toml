@@ -176,9 +176,9 @@ disableHugoGeneratorInject = false
     name = "github"
     url  = "https://github.com/0phoi5"
 
-  [[params.social]]
-    name = "hackthebox"
-    url  = "https://app.hackthebox.com/profile/53108"
+#  [[params.social]]
+#    name = "hackthebox"
+#    url  = "https://app.hackthebox.com/profile/53108"
 
   [[params.social]]
     name = "twitter"
