@@ -61,7 +61,7 @@ disableHugoGeneratorInject = false
 
   # Home subtitle of the index page.
   #
-  homeSubtitle = "Linux Admin, specialising in Security and Automation"
+  homeSubtitle = "Linux Admin, with a focus in Security and Automation"
 
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
