@@ -60,7 +60,8 @@ Huge Page allocation should be calulated based on application(s) RAM requirement
 For example, if the working set of an application on the Linux box is 12GB, and the size of each Huge Page is 2MB (grep Hugepagesize /proc/meminfo), then we can calculate ***12GB / 2MB = 6000***  
 We should also add a small amount as a buffer, for example ***6000 * 1.005 = 6030***
 
-For systems with an Oracle Database, we could find the total size of the System Global Area (SGA) via ```SELECT sum(value)/1024/1024 "TOTAL SGA (MB)" FROM v$sga;```, then calculate ***System Global Area (SGA) size (in MB) / 2MB * 1.005***
+For systems with an Oracle Database, we could find the total size of the System Global Area (SGA) via ```SELECT sum(value)/1024/1024 "TOTAL SGA (MB)" FROM v$sga;```, then calculate ***System Global Area (SGA) size (in MB) / 2MB * 1.005***  
+It's important to note that the SGA size may not be the only factor in determining the total memory requirements of an Oracle DB system, and other factors such as the size of the buffer cache and PGA (Process Global Area) should also be considered.
 
 ---
 

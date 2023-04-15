@@ -40,7 +40,7 @@ Each process has several physical memory segments allocated. To keep them all �
 <meta itemprop="description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
 Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments."><meta itemprop="datePublished" content="2023-04-14T10:32:22+01:00" />
 <meta itemprop="dateModified" content="2023-04-14T10:32:22+01:00" />
-<meta itemprop="wordCount" content="643"><meta itemprop="image" content="/"/>
+<meta itemprop="wordCount" content="688"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="rhel," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
@@ -174,7 +174,8 @@ After amendment, refresh Kernel parameters using <code>sysctl -p</code>.</p>
 <p>Huge Page allocation should be calulated based on application(s) RAM requirements; one way to calculate the number of Huge Pages required on a Linux box is to divide the working set of an application (the amount of active RAM it needs) by the size of each Huge Page. If more than one major application runs on a box, use the total working set for all of them in the calculation.<br>
 For example, if the working set of an application on the Linux box is 12GB, and the size of each Huge Page is 2MB (grep Hugepagesize /proc/meminfo), then we can calculate <em><strong>12GB / 2MB = 6000</strong></em><br>
 We should also add a small amount as a buffer, for example <em><strong>6000 * 1.005 = 6030</strong></em></p>
-<p>For systems with an Oracle Database, we could find the total size of the System Global Area (SGA) via <code>SELECT sum(value)/1024/1024 &quot;TOTAL SGA (MB)&quot; FROM v$sga;</code>, then calculate <em><strong>System Global Area (SGA) size (in MB) / 2MB * 1.005</strong></em></p>
+<p>For systems with an Oracle Database, we could find the total size of the System Global Area (SGA) via <code>SELECT sum(value)/1024/1024 &quot;TOTAL SGA (MB)&quot; FROM v$sga;</code>, then calculate <em><strong>System Global Area (SGA) size (in MB) / 2MB * 1.005</strong></em><br>
+It&rsquo;s important to note that the SGA size may not be the only factor in determining the total memory requirements of an Oracle DB system, and other factors such as the size of the buffer cache and PGA (Process Global Area) should also be considered.</p>
 <hr>
 <h2 id="notes">Miscellaneous notes on Huge Pages</h2>
 <ul>
