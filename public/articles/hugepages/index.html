@@ -40,7 +40,7 @@ Each process has several physical memory segments allocated. To keep them all �
 <meta itemprop="description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages on a RHEL server? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
 Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments."><meta itemprop="datePublished" content="2023-04-14T10:32:22+01:00" />
 <meta itemprop="dateModified" content="2023-04-14T10:32:22+01:00" />
-<meta itemprop="wordCount" content="649"><meta itemprop="image" content="/"/>
+<meta itemprop="wordCount" content="684"><meta itemprop="image" content="/"/>
 <meta itemprop="keywords" content="rhel," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
@@ -187,6 +187,7 @@ If AMM is used, you will see /dev/shm, which is used by Oracle AMM to store shar
 <li>It’s recommended that HugePages be used if a system has more than 4GB of RAM</li>
 <li>The hugeadm utility, provided by package <strong>libhugetlbfs-utils</strong> can also be used to display and configure a systems huge page pools.</li>
 </ul>
+<p>Huge Pages are a lot more in-depth and have a lot more configuration considerations and options available than listed here. You can find out more information about configuring Huge Pages via <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-huge-pages_monitoring-and-managing-system-status-and-performance">Red Hat&rsquo;s own site</a></p>
 <hr>
 <p><a href="#top">Top of page</a></p>
 

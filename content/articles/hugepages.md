@@ -75,6 +75,8 @@ If AMM is used, you will see /dev/shm, which is used by Oracle AMM to store shar
 - It’s recommended that HugePages be used if a system has more than 4GB of RAM
 - The hugeadm utility, provided by package **libhugetlbfs-utils** can also be used to display and configure a systems huge page pools.
 
+Huge Pages are a lot more in-depth and have a lot more configuration considerations and options available than listed here. You can find out more information about configuring Huge Pages via [Red Hat's own site](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-huge-pages_monitoring-and-managing-system-status-and-performance)
+
 ---
 
 [Top of page](#top)
