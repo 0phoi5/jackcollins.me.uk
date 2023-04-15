@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Jack Collins]">
+<meta name="description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages on a RHEL server? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
+Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments." />
+<meta name="keywords" content=", rhel" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/articles/hugepages/" />
+
+
+    <title>
+        
+            Huge Pages on Red Hat Linux :: Jack Collins  — Linux Admin | Security | Automation | UK
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.f65e09c8185054893957dfcdc776fa9ce9fc62f0b08aa061db93060f56459776.css" integrity="sha256-9l4JyBhQVIk5V9/Nx3b6nOn8YvCwiqBh25MGD1ZFl3Y=" crossorigin="anonymous">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Huge Pages on Red Hat Linux">
+<meta itemprop="description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages on a RHEL server? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
+Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments."><meta itemprop="datePublished" content="2023-04-14T10:32:22+01:00" />
+<meta itemprop="dateModified" content="2023-04-14T10:32:22+01:00" />
+<meta itemprop="wordCount" content="649"><meta itemprop="image" content="/"/>
+<meta itemprop="keywords" content="rhel," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Huge Pages on Red Hat Linux"/>
+<meta name="twitter:description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages on a RHEL server? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
+Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments."/>
+
+
+
+    <meta property="og:title" content="Huge Pages on Red Hat Linux" />
+<meta property="og:description" content="What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages on a RHEL server? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
+Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/hugepages/" /><meta property="og:image" content="/"/><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2023-04-14T10:32:22+01:00" />
+<meta property="article:modified_time" content="2023-04-14T10:32:22+01:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2023-04-14 10:32:22 &#43;0100 BST" />
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                jackcollins.me.uk$ </span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/articles">Articles</a></li><li><a href="/documents/CV_Jack_Collins_Linux_Admin_2023.pdf">Download CV</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/articles/hugepages/">Huge Pages on Red Hat Linux</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <ul>
+<li><a href="#intro">What are Huge Pages?</a></li>
+<li><a href="#status">Checking the current status of Huge Pages</a></li>
+<li><a href="#amend">How do I amend Huge Pages on a RHEL server?</a></li>
+<li><a href="#calc">Calculating Huge Pages</a></li>
+<li><a href="#notes">Miscellaneous notes on Huge Pages</a></li>
+</ul>
+<hr>
+<h2 id="intro">What are Huge Pages?</h2>
+<p>Systems with large amounts of RAM may mean Huge Pages need to be implemented.</p>
+<p>Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments. This ‘table’ is typically called the <strong>Translation Lookaside Buffer</strong> table.</p>
+<p>The Translation Lookaside Buffer table is limited in size, meaning that if it gets full, we end up in a situation where swapping is required, with processes sharing Memory back and forth, slowing everything down considerably.</p>
+<p>Each process will have it’s own <strong>PageTable</strong>, to map it’s virtual memory requirements on to physical memory.</p>
+<p>Each <strong>PageTable Entry</strong> (PTE) is around 8 bytes on 64 bit systems, which is quite low. Given that the Translation Lookaside Buffer table is limited in how many PTEs it can handle, we want the PTEs to be as big as possible, else we’ll end up with that swapping situation mentioned above. Enter ‘Huge Pages’.</p>
+<hr>
+<h2 id="status">Checking the current status of Huge Pages</h2>
+<p><code>sysctl -a | grep vm.nr_hugepages</code> will tell you the currently allocated number of Huge Pages on the system.<br>
+If the value is zero, then Huge Pages are disabled.</p>
+<p>The current size of Huge Pages can be confirmed via <code>grep Hugepagesize /proc/meminfo</code></p>
+<hr>
+<h2 id="amend">How do I amend Huge Pages on a RHEL server?</h2>
+<p>To amend Huge Pages, you&rsquo;ll need to edit <em><strong>/etc/sysctl.conf</strong></em>, or create/amend a conf file in <em><strong>/etc/sysctl.d/</strong></em>, such as /etc/sysctl.conf/hugepages.conf.<br>
+Note that the &lsquo;modern&rsquo; way of doing it is via sysctl.d files, using sysctl.conf is relevant on older systems but is now deprecated.</p>
+<p>Amend the line <code>vm.nr_hugepages = #</code>, where the hash is the number of Huge Pages to apply.<br>
+After amendment, refresh Kernel parameters using <code>sysctl -p</code>.</p>
+<p>A reboot is not mandatory, but highly recommended, since the provided amount of memory must be correctly reserved by the kernel.</p>
+<hr>
+<h2 id="calc">Calculating how many Huge Pages should be allocated</h2>
+<p>Huge Page allocation should be calulated based on application(s) RAM requirements; one way to calculate the number of Huge Pages required on a Linux box is to divide the working set of an application (the amount of active RAM it needs) by the size of each Huge Page. If more than one major application runs on a box, use the total working set for all of them in the calculation.<br>
+For example, if the working set of an application on the Linux box is 12GB, and the size of each Huge Page is 2MB (grep Hugepagesize /proc/meminfo), then we can calculate <em><strong>12GB / 2MB = 6000</strong></em><br>
+We should also add a small amount as a buffer, for example <em><strong>6000 * 1.005 = 6030</strong></em></p>
+<p>For systems with an Oracle Database, we could find the total size of the System Global Area (SGA) via <code>SELECT sum(value)/1024/1024 &quot;TOTAL SGA (MB)&quot; FROM v$sga;</code>, then calculate <em><strong>System Global Area (SGA) size (in MB) / 2MB * 1.005</strong></em></p>
+<hr>
+<h2 id="notes">Miscellaneous notes on Huge Pages</h2>
+<ul>
+<li>Oracle Automatic Memory Management (AMM) is incompatible with HugePages (not really done any more, AMM is an old concept).<br>
+If AMM is used, you will see /dev/shm, which is used by Oracle AMM to store shared memory pages.<br>
+/dev/shm is automatically set to 50% of RAM.</li>
+<li>Transparent HugePages (THP) do not work well with Oracle.</li>
+<li>The default Memory Page Size on Red Hat is 4KB. This doesn’t work well for Oracle systems.</li>
+<li>The recommended HugePages size for Oracle database servers is 2MB.</li>
+<li>It’s recommended that HugePages be used if a system has more than 4GB of RAM</li>
+<li>The hugeadm utility, provided by package <strong>libhugetlbfs-utils</strong> can also be used to display and configure a systems huge page pools.</li>
+</ul>
+<hr>
+<p><a href="#top">Top of page</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="/tags/rhel/">rhel</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Created in Linux CLI using <a href="http://gohugo.io">Hugo</a></span><span>Self Hosted via Github and AWS Amplify</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.644292943ae47eef02fcd64b11757aeb8caeeaebf473a823b62099edccac808e8d82689359f285e5d95994e5ad5ae3b9c1ccc281eb1828e67d0ba6630f95b832.js" integrity="sha512-ZEKSlDrkfu8C/NZLEXV664yu6uv0c6gjtiCZ7cysgI6NgmiTWfKF5dlZlOWtWuO5wczCgesYKOZ9C6ZjD5W4Mg==" crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>

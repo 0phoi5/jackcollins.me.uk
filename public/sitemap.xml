@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/articles/htb_example/</loc>
-    <lastmod>2023-04-10T20:15:08+01:00</lastmod>
-  </url><url>
     <loc>/articles/</loc>
+    <lastmod>2023-04-14T10:32:22+01:00</lastmod>
+  </url><url>
+    <loc>/articles/hugepages/</loc>
+    <lastmod>2023-04-14T10:32:22+01:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2023-04-14T10:32:22+01:00</lastmod>
+  </url><url>
+    <loc>/tags/rhel/</loc>
+    <lastmod>2023-04-14T10:32:22+01:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-04-14T10:32:22+01:00</lastmod>
+  </url><url>
+    <loc>/articles/htb_example/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
     <loc>/tags/hackthebox/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>/</loc>
-    <lastmod>2023-04-10T20:15:08+01:00</lastmod>
-  </url><url>
     <loc>/tags/pentesting/</loc>
-    <lastmod>2023-04-10T20:15:08+01:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
     <loc>/tags/walkthrough/</loc>
@@ -42,9 +48,6 @@
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
     <loc>/tags/linux/</loc>
-    <lastmod>2023-02-23T20:06:30+01:00</lastmod>
-  </url><url>
-    <loc>/tags/rhel/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
     <loc>/tags/osint/</loc>
