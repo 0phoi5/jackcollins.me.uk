@@ -1,7 +1,7 @@
 ---
 author:
   name: "Jack Collins"
-title: "Huge Pages on Red Hat Linux"
+title: "Huge Pages in Linux"
 subtitle: "jackcollins.me.uk | Linux Admin UK"
 date: 2023-04-14T10:32:22+01:00
 draft: false
@@ -13,7 +13,7 @@ tags:
 
 - [What are Huge Pages?](#intro)
 - [Checking the current status of Huge Pages](#status)
-- [How do I amend Huge Pages on a RHEL server?](#amend)
+- [How do I amend Huge Pages?](#amend)
 - [Calculating Huge Pages](#calc)
 - [Miscellaneous notes on Huge Pages](#notes)
 
@@ -42,7 +42,7 @@ The current size of Huge Pages can be confirmed via ```grep Hugepagesize /proc/m
 
 ---
 
-## How do I amend Huge Pages on a RHEL server?{#amend}
+## How do I amend Huge Pages?{#amend}
 
 To amend Huge Pages, you'll need to edit ***/etc/sysctl.conf***, or create/amend a conf file in ***/etc/sysctl.d/***, such as /etc/sysctl.conf/hugepages.conf.  
 Note that the 'modern' way of doing it is via sysctl.d files, using sysctl.conf is relevant on older systems but is now deprecated.
@@ -70,12 +70,10 @@ For systems with an Oracle Database, we could find the total size of the System 
 If AMM is used, you will see /dev/shm, which is used by Oracle AMM to store shared memory pages.  
 /dev/shm is automatically set to 50% of RAM.
 - Transparent HugePages (THP) do not work well with Oracle.
-- The default Memory Page Size on Red Hat is 4KB. This doesn’t work well for Oracle systems.
+- The default Memory Page Size on Red Hat Enterprise Linux is 4KB. This doesn’t work well for Oracle systems.
 - The recommended HugePages size for Oracle database servers is 2MB.
-- It’s recommended that HugePages be used if a system has more than 4GB of RAM
+- It’s recommended that HugePages be used if a system has more than 4GB of RAM.
 - The hugeadm utility, provided by package **libhugetlbfs-utils** can also be used to display and configure a systems huge page pools.
-
-Huge Pages are a lot more in-depth and have a lot more configuration considerations and options available than listed here. You can find out more information about configuring Huge Pages via [Red Hat's own site](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/configuring-huge-pages_monitoring-and-managing-system-status-and-performance)
 
 ---
 
