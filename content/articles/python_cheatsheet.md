@@ -3,12 +3,13 @@ author:
   name: "Jack Collins"
 title: "Python Basics"
 subtitle: "jackcollins.me.uk | Linux Admin UK"
-date: 2023-04-15T12:28:13+01:00
+date: 2023-04-20T06:00:00+01:00
 draft: true
 toc: false
 images:
 tags:
   - cheatsheet
+  - python
 ---
 
 - [Strings](#strings)
@@ -48,13 +49,13 @@ tags:
 
 ## Advanced Strings{#advstrings}
 
-> my_name = “Roger”
+    my_name = “Roger”
 
 `print(my_name[0])` # Print first letter of variable
 
 `print(my_name[-1])` # Print last letter of variable
 
-> sentence = “This is a sentence”
+    sentence = “This is a sentence”
 
 `print(sentence[:4])` # Print the word ‘This’
 
@@ -70,7 +71,7 @@ tags:
 
 `quote = “He said, \"give me all your money"\”` # Escape the characters you want inside the string
 
-> too_much_space = “&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hello&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“
+    too_much_space = “     hello     “
 
 `print(too_much_space.strip())` # Strip white space from string
 
@@ -78,12 +79,12 @@ tags:
 
 `print(”a” in “Apple”) # Returns False`
 
-> letter = “a”  
-> word = “Apple”
+    letter = “a”
+    word = “Apple”
 
 `print(letter.lower() in word.lower()` # Returns True, because we’ve lowercased everything
 
-> movie = “LOTR”
+    movie = “LOTR”
 
 `print(”My favourite movie is {}.”.format(movie)` # An improvement over using the ‘+’ concatenation method, to add in the variable ‘movie’. Python now knows to place the variable ‘movie’ in to the curly braces.
 
@@ -111,7 +112,7 @@ tags:
 
 ## Variables & Methods{#vars}
 
-> foo = “This is a variable.”
+    foo = “This is a variable.”
 
 `print(foo)` # Print variable
 
@@ -135,13 +136,13 @@ tags:
 
 `print(type(foobar))` # Tells us what class/type a variable is, in this case ‘float’
 
-> age = 18
+    age = 18
 
 `age += 1`
 
 `print(age)` # We’ve added 1 to the variable ‘age’, which would give us 19.
 
-> birthday = 1
+    birthday = 1
 
 `age += birthday`
 
@@ -151,8 +152,8 @@ tags:
 
 ### TypeError: can only concatenate str (not “int”) to str{#intstrerr}
 
-> name = “Bob”  
-> age = “23”
+    name = “Bob”  
+    age = “23”
 
 `print(”My name is “ + name + “ and I am “ + age + “ years old.”)` # **This will error!** You cannot concatenate a string with an integer ( ‘+’ and the variable ‘age’). Instead, you need to;
 
@@ -168,8 +169,9 @@ Use indentation correctly!
 
 Note that variables defined ***within*** a function are only available ***within*** the function.
 
-```
-def who_am_i(): # Define a function
+```python
+# Define a function
+def who_am_i():
   name = “Bob”
   age = “23”
   print(”My name is “ + name + “ and I am “ + str(age) + “ years old.”)
@@ -185,27 +187,26 @@ def who_am_i(): # Define a function
 
 `def add(x,y):` # Define a function with two input requirements. When we call the function, we must give it two variables to work with, of the correct type (str,int,float)
 
-`print (x + y)`
+`print (x + y)` # Prints the result of x + y
 
 `add(7,10)` # Runs the above function, adding 7 and 10 together, giving us 17
 
-`def multiply(x,y):`
+`def multiply(x,y):` # Prints the result of x * y
 
 `return x * y` # Stores the output of the function for later use. The print, below, prints it out, instead of defining print on this line. Maybe we want to do something else with the output, instead of print.
 
-`print(mutiple(7,7))`
+`print(mutiple(7,7))` # Prints the result of 7 * 7
 
-`def square_root(num)`
+`def square_root(num)` # Prints the Square Root of *num*
 
 `print(num ** .5)` # Variable ‘num’ to the power of 0.5, which is the same as ‘the square root of’
 
-`square_root(64)`
+`square_root(64)` # Prints the Square Root of 64
 
-`def nl():` # Example of a new line function, saving us time and effort going forwards
+`def nl():
+print(’\n’)` # Example of a new line function, saving us time and effort going forwards
 
-`print(’\n’)`
-
-`nl()`
+`nl()` # Run the 'new line' function we just created above
 
 ---
 
@@ -213,13 +214,10 @@ def who_am_i(): # Define a function
 
 Note, there is a difference between True and “True”. The first is a Boolean, the second is a String.
 
-`bool_1 = True`
-
-`bool_2 = 3*3 == 9`
-
-`bool_3 = False`
-
-`bool_4 = 3*3 != 9`
+    bool_1 = True
+    bool_2 = 3*3 == 9
+    bool_3 = False
+    bool_4 = 3*3 != 9
 
 `print(bool_1,bool_2,bool_3,bool_4)` # Prints ‘True True False False’, because bool_2 is a True statement whereas bool_4 is a False statement.
 
@@ -229,9 +227,8 @@ Note, there is a difference between True and “True”. The first is a Boolean,
 
 `print(”a” in “Apple”)` # Returns False, because the Boolean search is case sensitive
 
-`letter = “a”`
-
-`word = “Apple”`
+    letter = “a”
+    word = “Apple”
 
 `print(letter.lower() in word.lower()` # Returns True, because we’ve lowercased everything
 
@@ -257,43 +254,36 @@ Note, there is a difference between True and “True”. The first is a Boolean,
 
 `test_not2 = not False` # True
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c0d19a03-7bc0-4c3e-a4e6-d5f936997d85/Untitled.png)
-
 ---
 
 ## Conditional Statements (IF, ELIF, ELSE){#conditionals}
 
-`def drink(money):` # Define, IF statement name, variable Input
+#### Example of an IF statement;
 
-`if money => 2:`
-
-`return “You’ve got yourself a drink!”`
-
-`else`
-
-`return “No drink for you!”`
+```python
+def drink(money):
+if money => 2:
+  return “You’ve got yourself a drink!”
+else
+  return “No drink for you!”
+```
 
 `print(drink(3))` # Call the ‘drink’ IF statement, set the input variable as 3. Will return Success
 
 `print(drink(1))` # Will return Failure
 
-`def alcohol(age,money):`
-
-`if (age >= 18) and (money >= 5):`
-
-`return “You’ve got yourself an alchoholic drink!”`
-
-`elif (age >= 18) and (money < 5):`
-
-`return “Come back with more money!”`
-
-`elif (age < 18) and (money >= 5)`
-
-`return “You’re not old enough to drink! Nice try.”`
-
-`else:`
-
-`return “You’re too poor and too young!”`
+#### Example of an IF / ELSE statement; 
+```python
+def alcohol(age,money):
+if (age >= 18) and (money >= 5):
+  return “You’ve got yourself an alchoholic drink!”
+elif (age >= 18) and (money < 5):
+  return “Come back with more money!”
+elif (age < 18) and (money >= 5)
+  return “You’re not old enough to drink! Nice try.”
+else:
+  return “You’re too poor and too young!”
+```
 
 `print(alcohol(21,5))` # Got a drink!
 
@@ -313,7 +303,7 @@ The first item in a list is ***zero***.
 
 If you define a range, the range stops ***just before the last defined item (up to, not including).***
 
-`movies = [”LOTR”,”The Hobbit”,”Blood and Chrome”]`
+    movies = [”LOTR”,”The Hobbit”,”Blood and Chrome”]
 
 `print(movies[1])` #Print the ***second*** item from a list. Remember, the first item is 0, not 1.
 
@@ -341,7 +331,7 @@ Similar to Lists, however Lists are amendable and Tuples are not.
 
 They use Parentheses rather than square brackets ( )
 
-`grades = (”a”,”b”,”c”,”d”)`
+    grades = (”a”,”b”,”c”,”d”)
 
 `print(grades[2])`
 
@@ -355,19 +345,21 @@ The same as the above Lists, but without the commands to append, pop or edit in 
 
 ## Looping (FOR, WHILE){#loops}
 
-`vegetables = [”Avacado”,”Cucumber”,”Courgette”,”Pepper”]`
+    vegetables = [”Avacado”,”Cucumber”,”Courgette”,”Pepper”]
 
-`for x in vegetables:`
+```python
+for x in vegetables:
+print(x)
+```
 
-`print(x)`
+#### Looping until we reach 10, adding 1 to variable 'i' each time
 
-`i = 1`
-
-`while i < 10:`
-
-`print(i)`
-
-`i += 1` #Prints numbers 1 to 9, for obvious reasons
+```python
+i = 1
+while i < 10:
+  print(i)
+  i += 1    # Prints numbers 1 to 9
+```
 
 ---
 
@@ -377,19 +369,19 @@ Python has it’s own library of modules that you can import right off-the-bat. 
 
 Imports go directly after the shebang - `#!/usr/bin/python`
 
-`import sys` #Import a module called sys, which is used for system functions and parameters
+`import sys` # Import a module called sys, which is used for system functions and parameters
 
-`print(sys.version)` #Now that we’ve imported the sys module, this command will print the version of Python we’re using
+`print(sys.version)` # Now that we’ve imported the sys module, this command will print the version of Python we’re using
 
-`sys.exit()` #Exit Python cleanly. Requires the sys module.
+`sys.exit()` # Exit Python cleanly. Requires the sys module.
 
-`from datetime import datetime` #Only import a specific command from a module, instead of the whole thing.
+`from datetime import datetime` # Only import a specific command from a module, instead of the whole thing.
 
-`print(datetime.now())` #Prints the current date and time, using ***just*** the command we imported on the line above.
+`print(datetime.now())` # Prints the current date and time, using ***just*** the command we imported on the line above.
 
-`from datetime import datetime as dt` #Imports the specific datetime command, from module datetime, but gives it the **alias** of dt
+`from datetime import datetime as dt` # Imports the specific datetime command, from module datetime, but gives it the **alias** of dt
 
-`print(dt.now())`
+`print(dt.now())` # Prints the current date and time
 
 ---
 
@@ -397,21 +389,21 @@ Imports go directly after the shebang - `#!/usr/bin/python`
 
 Uses curly braces { }
 
-`drinks = {”White Russian”: 7, “Old Fashioned”: 10, “Lemon Drop: 8}` #Drink is the key, price is the value
+`drinks = {”White Russian”: 7, “Old Fashioned”: 10, “Lemon Drop: 8}` # Drink is the key, price is the value
 
 `print(drinks)`
 
-`employees =  {”Finance”: [”Bob,”Linda”,”Tina”], “IT”: [”Gene”,”Louise”,”Teddy”], “HR”: [”Jimmy Jr.”,”Mort”]}` #Example of multiple Key:Value pairs
+`employees =  {”Finance”: [”Bob,”Linda”,”Tina”], “IT”: [”Gene”,”Louise”,”Teddy”], “HR”: [”Jimmy Jr.”,”Mort”]}` # Example of multiple Key:Value pairs
 
-`employees[’Legal’] = [”Mr. Frond”]` #Adds a new Key:Value pair to employees
+`employees[’Legal’] = [”Mr. Frond”]` # Adds a new Key:Value pair to employees
 
-`employees.update({”Sales”: [”Andie”, “Ollie”]})` #Also adds a new Key:Value pair to employees
+`employees.update({”Sales”: [”Andie”, “Ollie”]})` # Also adds a new Key:Value pair to employees
 
-`drinks = {”White Russian”: 7, “Old Fashioned”: 10, “Lemon Drop: 8}`
+    drinks = {”White Russian”: 7, “Old Fashioned”: 10, “Lemon Drop": 8}
 
-`drinks[’White Russian’] = 8` #Change the Value of a Key
+`drinks[’White Russian’] = 8` # Change the Value of a Key
 
-`print(drinks.get(”White Russian”))` #Pull a specific Key from a dictionary
+`print(drinks.get(”White Russian”))` # Pull a specific Key from a dictionary
 
 ---
 
@@ -421,17 +413,22 @@ A module called ‘socket’ can be used to establish and work with connections,
 
 Don’t call a file socket.py, it will cause issues because Linux will think it’s an actual socket.
 
-`!#/usr/bin/python`
+```python
+!#/usr/bin/python
 
-`import socket`
+import socket
 
-`HOST = ‘127.0.0.1’`
+HOST = ‘127.0.0.1’
+PORT = ‘1234’
 
-`PORT = ‘1234’`
+# Define a short variable that refers to to the socket module, socket command,
+# with the parameters of AF_INET (IPv4 connection related) and SOCK_STREAM
+# (port usage related)
+`s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)`
 
-`s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)` #Definate a short variable that refers to to the socket module, socket command, with the parameters of AF_INET (IPv4 connection related) and SOCK_STREAM (port usage related)
-
-`s.connect((HOST,PORT))` #Using the above, establish a connection to the specified host and port
+# Using the above, establish a connection to the specified host and port
+`s.connect((HOST,PORT))` 
+```
 
 ---
 

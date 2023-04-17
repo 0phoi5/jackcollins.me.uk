@@ -9,7 +9,7 @@ toc: false
 images:
 tags:
   - pentesting
-  - tools
+  - software
   - cheatsheet
 ---
 
