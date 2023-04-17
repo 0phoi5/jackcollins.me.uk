@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 14 Apr 2023 10:32:22 +0100</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Apr 2023 12:31:14 +0100</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>rhel</title>
-      <link>/tags/rhel/</link>
-      <pubDate>Fri, 14 Apr 2023 10:32:22 +0100</pubDate>
+      <title>error resolution</title>
+      <link>/tags/error-resolution/</link>
+      <pubDate>Mon, 17 Apr 2023 12:31:14 +0100</pubDate>
       
-      <guid>/tags/rhel/</guid>
+      <guid>/tags/error-resolution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Mon, 17 Apr 2023 12:31:14 +0100</pubDate>
+      
+      <guid>/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -36,15 +45,6 @@
     </item>
     
     <item>
-      <title>walkthrough</title>
-      <link>/tags/walkthrough/</link>
-      <pubDate>Mon, 10 Apr 2023 20:15:08 +0100</pubDate>
-      
-      <guid>/tags/walkthrough/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cheatsheet</title>
       <link>/tags/cheatsheet/</link>
       <pubDate>Thu, 02 Mar 2023 20:14:52 +0100</pubDate>
@@ -54,11 +54,11 @@
     </item>
     
     <item>
-      <title>nmap</title>
-      <link>/tags/nmap/</link>
+      <title>tools</title>
+      <link>/tags/tools/</link>
       <pubDate>Thu, 02 Mar 2023 20:14:52 +0100</pubDate>
       
-      <guid>/tags/nmap/</guid>
+      <guid>/tags/tools/</guid>
       <description></description>
     </item>
     
@@ -68,24 +68,6 @@
       <pubDate>Thu, 23 Feb 2023 20:06:30 +0100</pubDate>
       
       <guid>/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>github</title>
-      <link>/tags/github/</link>
-      <pubDate>Thu, 23 Feb 2023 20:06:30 +0100</pubDate>
-      
-      <guid>/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>/tags/linux/</link>
-      <pubDate>Thu, 23 Feb 2023 20:06:30 +0100</pubDate>
-      
-      <guid>/tags/linux/</guid>
       <description></description>
     </item>
     

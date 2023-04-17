@@ -10,8 +10,6 @@ images:
 tags:
   - linux
   - aws
-  - rhel
-  - github
 ---
 
 Amazon Workspaces is a brilliant offering by AWS to allow users access to Windows 10 (or Amazon Linux) based Virtual Machines in the cloud, from anywhere in the world.
@@ -69,3 +67,7 @@ sudo rpm --install /home/[USER]/rpmbuild/RPMS/x86_64/workspacesclient-*.x86_64.r
 And hey presto! You should hopefully now have a working version of Amazon Workspaces installed.
 
 The only downside to this method is that, as we're not installing Amazon's Ubuntu repo, you will need to manually upgrade the application going forwards. Hopefully Amazon will add Red Hat support one day. At least it's an easy process!
+
+---
+
+[Top of page](#top)

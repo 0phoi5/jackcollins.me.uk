@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>error resolution on Jack Collins</title>
+    <link>/tags/error-resolution/</link>
+    <description>Recent content in error resolution on Jack Collins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 17 Apr 2023 12:31:14 +0100</lastBuildDate><atom:link href="/tags/error-resolution/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RPM / Yum - Fatal Error, run database recovery</title>
+      <link>/articles/rpm_db_fatalerror/</link>
+      <pubDate>Mon, 17 Apr 2023 12:31:14 +0100</pubDate>
+      
+      <guid>/articles/rpm_db_fatalerror/</guid>
+      <description>Scenario When running yum clean all, or yum update, you get an error similar to the following;
+error: rpmdb: BDB0113 Thread/process #/# failed: BDB1507 Thread died in Berkley DB library error: db5 error(-30973) from dbenv-&amp;gt;failchk BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery error: cannot open Packages database in /var/lib/rpm CRITICAL:yum.main: Error: rpmdb open failed  Resolution Firstly, try clearing the yum cache and then rebuilding it, via;
+sudo rm -rf /var/cache/yum/* sudo yum makecache If that doesn&amp;rsquo;t resolve, kill all yum related processes, delete the cache and all metadata, and rebuild;</description>
+    </item>
+    
+  </channel>
+</rss>

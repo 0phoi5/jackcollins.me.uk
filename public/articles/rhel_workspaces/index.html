@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="map[name:Jack Collins]">
 <meta name="description" content="Amazon Workspaces is a brilliant offering by AWS to allow users access to Windows 10 (or Amazon Linux) based Virtual Machines in the cloud, from anywhere in the world. Unlike EC2, it much more easily scales up for companies to allow remote and cloud based, Active-Directory integrated fleets of VMs for employees. However we can also use it on an individual scale to give access to a true Windows 10 box (not Windows server 2019) from anywhere in the World, without the need for using local CPU, RAM and disk resources for the VM." />
-<meta name="keywords" content=", linux, aws, rhel, github" />
+<meta name="keywords" content=", linux, aws" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="/articles/rhel_workspaces/" />
@@ -38,8 +38,8 @@
 <meta itemprop="name" content="Amazon Workspaces on RHEL based distros">
 <meta itemprop="description" content="Amazon Workspaces is a brilliant offering by AWS to allow users access to Windows 10 (or Amazon Linux) based Virtual Machines in the cloud, from anywhere in the world. Unlike EC2, it much more easily scales up for companies to allow remote and cloud based, Active-Directory integrated fleets of VMs for employees. However we can also use it on an individual scale to give access to a true Windows 10 box (not Windows server 2019) from anywhere in the World, without the need for using local CPU, RAM and disk resources for the VM."><meta itemprop="datePublished" content="2023-02-23T20:06:30+01:00" />
 <meta itemprop="dateModified" content="2023-02-23T20:06:30+01:00" />
-<meta itemprop="wordCount" content="475"><meta itemprop="image" content="/"/>
-<meta itemprop="keywords" content="linux,aws,rhel,github," />
+<meta itemprop="wordCount" content="478"><meta itemprop="image" content="/"/>
+<meta itemprop="keywords" content="linux,aws," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/"/>
 
@@ -101,7 +101,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/articles">Articles</a></li><li><a href="/documents/CV_Jack_Collins_Linux_Admin_2023.pdf">Download CV</a></li>
+    <ul class="menu__inner"><li><a href="/articles">Articles</a></li><li><a href="/documents/CV_Jack_Collins_Linux_Admin_2023.pdf">Download CV</a></li><li><a href="/tags">Tags</a></li>
     </ul>
 </nav>
 
@@ -163,6 +163,8 @@ Ignore the instructions around setting up a repo, click the direct download link
 <pre tabindex="0"><code>sudo rpm --install /home/[USER]/rpmbuild/RPMS/x86_64/workspacesclient-*.x86_64.rpm
 </code></pre><p>And hey presto! You should hopefully now have a working version of Amazon Workspaces installed.</p>
 <p>The only downside to this method is that, as we&rsquo;re not installing Amazon&rsquo;s Ubuntu repo, you will need to manually upgrade the application going forwards. Hopefully Amazon will add Red Hat support one day. At least it&rsquo;s an easy process!</p>
+<hr>
+<p><a href="#top">Top of page</a></p>
 
             </div>
         </article>
@@ -176,8 +178,6 @@ Ignore the instructions around setting up a repo, click the direct download link
 
         <span class="tag"><a href="/tags/linux/">linux</a></span>
         <span class="tag"><a href="/tags/aws/">aws</a></span>
-        <span class="tag"><a href="/tags/rhel/">rhel</a></span>
-        <span class="tag"><a href="/tags/github/">github</a></span>
         
     </p>
 

@@ -9,7 +9,6 @@ images:
 tags:
   - pentesting
   - osint
-  - social media
 ---
 
 During pentesting, specifically during pre-engagement OSINT, we'll want to make use of various social media websites to gather information about our target.

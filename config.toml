@@ -209,6 +209,10 @@ disableHugoGeneratorInject = false
     name       = "Articles"
     url        = "articles"
   [[menu.main]]
+    identifier = "tags"
+    name       = "Tags"
+    url        = "tags"
+  [[menu.main]]
     identifier = "cv"
     name       = "Download CV"
     url        = "documents/CV_Jack_Collins_Linux_Admin_2023.pdf"

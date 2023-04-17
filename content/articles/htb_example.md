@@ -9,7 +9,6 @@ toc: false
 images:
 tags:
   - pentesting
-  - walkthrough
   - hackthebox
 ---
 

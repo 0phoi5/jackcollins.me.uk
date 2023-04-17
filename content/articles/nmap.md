@@ -9,8 +9,8 @@ toc: false
 images:
 tags:
   - pentesting
+  - tools
   - cheatsheet
-  - nmap
 ---
 
 - [Background](#background)

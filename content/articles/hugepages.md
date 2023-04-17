@@ -8,7 +8,7 @@ draft: false
 toc: false
 images:
 tags:
-  - rhel
+  - linux
 ---
 
 - [What are Huge Pages?](#intro)
