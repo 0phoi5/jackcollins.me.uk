@@ -18,7 +18,7 @@ tags:
 - [Variables](#vars)
 - [TypeError](#intstrerr) ("Can only concatenate str")
 - [Functions](#functions)
-- [Booleans](#bool)
+- [Booleans](#bool) (LT, GT, EQ, AND, OR, NOT)
 - [Conditional Statements](#conditionals) (IF, ELIF, ELSE)
 - [Lists](#lists)
 - [Tuples](#tuples)
@@ -424,10 +424,10 @@ PORT = ‘1234’
 # Define a short variable that refers to to the socket module, socket command,
 # with the parameters of AF_INET (IPv4 connection related) and SOCK_STREAM
 # (port usage related)
-`s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)`
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Using the above, establish a connection to the specified host and port
-`s.connect((HOST,PORT))` 
+s.connect((HOST,PORT))
 ```
 
 ---

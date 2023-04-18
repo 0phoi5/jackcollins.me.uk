@@ -14,14 +14,13 @@
       <pubDate>Tue, 18 Apr 2023 06:00:00 +0100</pubDate>
       
       <guid>/articles/python_cheatsheet/</guid>
-      <description>Strings Advanced Strings Math Variables TypeError (&amp;ldquo;Can only concatenate str&amp;rdquo;) Functions Booleans Conditional Statements (IF, ELIF, ELSE) Lists Tuples Looping (FOR, WHILE) Importing Modules Dictionaries (Key:Value Pairs) Sockets   Strings print(”Hello, world!”) # Double quotes
+      <description>Strings Advanced Strings Math Variables TypeError (&amp;ldquo;Can only concatenate str&amp;rdquo;) Functions Booleans (LT, GT, EQ, AND, OR, NOT) Conditional Statements (IF, ELIF, ELSE) Lists Tuples Looping (FOR, WHILE) Importing Modules Dictionaries (Key:Value Pairs) Sockets   Strings print(”Hello, world!”) # Double quotes
 print(’Hello, world!’) # Single quotes
 print(”This string is “+”awesome!”) # Concatenate
 print(’\n’) # New line
 print(variable_name) # Print a str variable
 print(”””This string runs
-multiple lines!”””) # Multi-line string
- Advanced Strings my_name = “Roger”  print(my_name[0]) # Print first letter of variable</description>
+multiple lines!”””) # Multi-line string</description>
     </item>
     
   </channel>
