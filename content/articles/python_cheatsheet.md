@@ -3,7 +3,7 @@ author:
   name: "Jack Collins"
 title: "Python Basics"
 subtitle: "jackcollins.me.uk | Linux Admin UK"
-date: 2023-04-20T06:00:00+01:00
+date: 2023-04-18T06:00:00+01:00
 draft: true
 toc: false
 images:
