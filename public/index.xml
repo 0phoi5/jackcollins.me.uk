@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 17 Apr 2023 12:31:14 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Apr 2023 06:00:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Basics</title>
+      <link>/articles/python_cheatsheet/</link>
+      <pubDate>Tue, 18 Apr 2023 06:00:00 +0100</pubDate>
+      
+      <guid>/articles/python_cheatsheet/</guid>
+      <description>Strings Advanced Strings Math Variables TypeError (&amp;ldquo;Can only concatenate str&amp;rdquo;) Functions Booleans Conditional Statements (IF, ELIF, ELSE) Lists Tuples Looping (FOR, WHILE) Importing Modules Dictionaries (Key:Value Pairs) Sockets   Strings print(”Hello, world!”) # Double quotes
+print(’Hello, world!’) # Single quotes
+print(”This string is “+”awesome!”) # Concatenate
+print(’\n’) # New line
+print(variable_name) # Print a str variable
+print(”””This string runs
+multiple lines!”””) # Multi-line string
+ Advanced Strings my_name = “Roger”  print(my_name[0]) # Print first letter of variable</description>
+    </item>
+    
     <item>
       <title>RPM / Yum - Fatal Error, run database recovery</title>
       <link>/articles/rpm_db_fatalerror/</link>

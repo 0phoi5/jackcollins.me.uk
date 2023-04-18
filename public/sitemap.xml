@@ -3,21 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/articles/</loc>
-    <lastmod>2023-04-17T12:31:14+01:00</lastmod>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
   </url><url>
-    <loc>/tags/error-resolution/</loc>
-    <lastmod>2023-04-17T12:31:14+01:00</lastmod>
+    <loc>/tags/cheatsheet/</loc>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
   </url><url>
     <loc>/</loc>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/python/</loc>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/articles/python_cheatsheet/</loc>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-04-18T06:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/error-resolution/</loc>
     <lastmod>2023-04-17T12:31:14+01:00</lastmod>
   </url><url>
     <loc>/tags/linux/</loc>
     <lastmod>2023-04-17T12:31:14+01:00</lastmod>
   </url><url>
     <loc>/articles/rpm_db_fatalerror/</loc>
-    <lastmod>2023-04-17T12:31:14+01:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2023-04-17T12:31:14+01:00</lastmod>
   </url><url>
     <loc>/articles/hugepages/</loc>
@@ -33,9 +42,6 @@
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
     <loc>/articles/nmap/</loc>
-    <lastmod>2023-03-02T20:14:52+01:00</lastmod>
-  </url><url>
-    <loc>/tags/cheatsheet/</loc>
     <lastmod>2023-03-02T20:14:52+01:00</lastmod>
   </url><url>
     <loc>/tags/software/</loc>
