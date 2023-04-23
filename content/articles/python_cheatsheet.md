@@ -221,7 +221,7 @@ Note, there is a difference between True and “True”. The first is a Boolean,
 
 `print(bool_1,bool_2,bool_3,bool_4)` # Prints ‘True True False False’, because bool_2 is a True statement whereas bool_4 is a False statement.
 
-`print(type(bool1))` # Tells us what class/type a variable is, in this case ‘bool’
+`print(type(bool_1))` # Tells us what class/type a variable is, in this case ‘bool’
 
 `print(”A” in “Apple”)` # Returns True
 
@@ -327,7 +327,8 @@ If you define a range, the range stops ***just before the last defined item (up 
 
 ## Tuples{#tuples}
 
-Similar to Lists, however Lists are amendable and Tuples are not.
+Similar to Lists, however Lists are amendable and Tuples are not.  
+Tuples are more memory efficient than Lists, so basically if you need a "list" of items but have no requirement to amend it at any point, use a Tuple instead.
 
 They use Parentheses rather than square brackets ( )
 

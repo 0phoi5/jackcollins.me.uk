@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 18 Apr 2023 06:00:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 23 Apr 2023 16:41:40 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible asynchronous actions and polling</title>
+      <link>/articles/ansible_async_poll/</link>
+      <pubDate>Sun, 23 Apr 2023 16:41:40 +0100</pubDate>
+      
+      <guid>/articles/ansible_async_poll/</guid>
+      <description>Ansible will normally run Tasks synchronously, keeping a connection open for the entire time a Task runs.
+If we have an especially long running task, for example an apt upgrade/dnf update or a long-running shell script, it may be better to close the connection and then re-establish it every now and then to see if the task has completed.
+We might not want connections to stay open for a few reasons;</description>
+    </item>
+    
     <item>
       <title>Python Basics</title>
       <link>/articles/python_cheatsheet/</link>
@@ -95,6 +106,16 @@ Note: Intelligence X Tools are good for a number of these sites.
 This list will be updated as I discover more resources.
 If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.
   Search Engines Reverse Image Searching EXIF Data Location Information Email Address Discovery Password OSINT Usernames &amp;amp; Accounts Specific People Search Phone Numbers   Search Engines Every good OSINT / Reconnaissance has to start somewhere.</description>
+    </item>
+    
+    <item>
+      <title>Disclaimer</title>
+      <link>/disclaimer/</link>
+      <pubDate>Thu, 01 Jan 1970 13:37:00 +0100</pubDate>
+      
+      <guid>/disclaimer/</guid>
+      <description>YOUR USAGE OF THIS WEBSITE CONSTITUTES YOUR AGREEMENT TO THE FOLLOWING TERMS :   This website contains articles related to Linux, but also Computer Security and Hacking/Penetration Testing.
+The articles, tutorials and demos provided are for informational and educational purpose only, and for those who’re willing and curious to know and learn about Ethical Hacking, Security and Penetration Testing. Any time the word “Hacking” is used on this website, it shall be regarded as Ethical Hacking.</description>
     </item>
     
   </channel>

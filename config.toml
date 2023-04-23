@@ -55,9 +55,9 @@ disableHugoGeneratorInject = false
 
   # Metadata mostly used in document's head
   # 
-  description = "Jack Collins, Linux Admin, Pentest Enthusiast, Automation Addict"
-  keywords = ""
-  images = [""]
+  description = "Jack Collins is a Linux Administrator, with a focus in Security and Automation knowledge, particuarly around pentesting and Ansible. Based in the UK."
+  keywords = "linux, red hat, rhel, pentest, pentester, ansible, automation, bash, python"
+  images = ["images/profile_pic.png"]
 
   # Home subtitle of the index page.
   #
@@ -122,7 +122,8 @@ disableHugoGeneratorInject = false
     topText = []
     bottomText = [
       "Created in Linux CLI using <a href=\"http://gohugo.io\">Hugo</a>",
-      "Self Hosted via Github and AWS Amplify"
+      "Self Hosted via Github and AWS Amplify",
+      "<a href=\"/disclaimer\">Disclaimer</a>"
     ]
 
   # Colors for favicons
