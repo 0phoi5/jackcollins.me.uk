@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 23 Apr 2023 16:41:40 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jun 2023 12:29:42 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible Bastion / Jumpbox Configuration</title>
+      <link>/articles/ansible_bastion/</link>
+      <pubDate>Tue, 27 Jun 2023 12:29:42 +0100</pubDate>
+      
+      <guid>/articles/ansible_bastion/</guid>
+      <description>Often we&amp;rsquo;ll want to use Ansible to manage many servers, but some of those servers may not sit on the same area of the network. They might be in a Dematerialized Zone (DMZ) and only be accessible via a Bastion / Jumpbox server.
+We can configure the Ansible Server to recognise Jumpbox configuration, so that it runs Ansible Playbooks on the DMZ Server, as though it were directly available;
+Configuration  Firstly, make sure SSH keys are set up correctly.</description>
+    </item>
+    
     <item>
       <title>Ansible asynchronous actions and polling</title>
       <link>/articles/ansible_async_poll/</link>
@@ -106,16 +117,6 @@ Note: Intelligence X Tools are good for a number of these sites.
 This list will be updated as I discover more resources.
 If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.
   Search Engines Reverse Image Searching EXIF Data Location Information Email Address Discovery Password OSINT Usernames &amp;amp; Accounts Specific People Search Phone Numbers   Search Engines Every good OSINT / Reconnaissance has to start somewhere.</description>
-    </item>
-    
-    <item>
-      <title>Disclaimer</title>
-      <link>/disclaimer/</link>
-      <pubDate>Thu, 01 Jan 1970 13:37:00 +0100</pubDate>
-      
-      <guid>/disclaimer/</guid>
-      <description>YOUR USAGE OF THIS WEBSITE CONSTITUTES YOUR AGREEMENT TO THE FOLLOWING TERMS :   This website contains articles related to Linux, but also Computer Security and Hacking/Penetration Testing.
-The articles, tutorials and demos provided are for informational and educational purpose only, and for those who’re willing and curious to know and learn about Ethical Hacking, Security and Penetration Testing. Any time the word “Hacking” is used on this website, it shall be regarded as Ethical Hacking.</description>
     </item>
     
   </channel>

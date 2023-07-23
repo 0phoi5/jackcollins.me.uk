@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 23 Apr 2023 16:41:40 +0100</lastBuildDate><atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jun 2023 12:29:42 +0100</lastBuildDate><atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ansible Bastion / Jumpbox Configuration</title>
+      <link>/articles/ansible_bastion/</link>
+      <pubDate>Tue, 27 Jun 2023 12:29:42 +0100</pubDate>
+      
+      <guid>/articles/ansible_bastion/</guid>
+      <description>Often we&amp;rsquo;ll want to use Ansible to manage many servers, but some of those servers may not sit on the same area of the network. They might be in a Dematerialized Zone (DMZ) and only be accessible via a Bastion / Jumpbox server.
+We can configure the Ansible Server to recognise Jumpbox configuration, so that it runs Ansible Playbooks on the DMZ Server, as though it were directly available;
+Configuration  Firstly, make sure SSH keys are set up correctly.</description>
+    </item>
+    
     <item>
       <title>Ansible asynchronous actions and polling</title>
       <link>/articles/ansible_async_poll/</link>
