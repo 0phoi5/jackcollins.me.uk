@@ -116,7 +116,7 @@ def lambda_handler(event, context):
       for image in images:
         image_id = image['ImageId']
         deregistered_images.append(image_id)
-        ec2_client.deregister_image(ImageId=imageid)
+        ec2_client.deregister_image(ImageId=image_id)
 
         # For each image, get underlying Snapshots, add them to List and delete them
         block_device_mappings = image.get('BlockDeviceMappings', [])
