@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 23 Feb 2023 20:06:30 +0100</lastBuildDate><atom:link href="/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Jul 2023 11:34:11 +0100</lastBuildDate><atom:link href="/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using AWS Lambda to automate AMI &amp; Snapshots deletion</title>
+      <link>/articles/lambda_delete_snapshots/</link>
+      <pubDate>Mon, 24 Jul 2023 11:34:11 +0100</pubDate>
+      
+      <guid>/articles/lambda_delete_snapshots/</guid>
+      <description>Scenario Steps  Create IAM Policy Create IAM Role Create Lambda Function Add Cloudwatch Trigger     Scenario Amazon Machine Images are a great way to back up your AWS EC2 instances, for example before patching.
+However, there is no easy way to delete the Images afterwards. Each AMI has underlying Elastic Block Store (EBS) Snapshots attached to it, often many, which to delete require you to deregister the AMI and then find each Snapshot to then remove, via the AWS GUI.</description>
+    </item>
+    
     <item>
       <title>Amazon Workspaces on RHEL based distros</title>
       <link>/articles/rhel_workspaces/</link>
