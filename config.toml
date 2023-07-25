@@ -55,13 +55,13 @@ disableHugoGeneratorInject = false
 
   # Metadata mostly used in document's head
   # 
-  description = "Jack Collins is a Linux Administrator, with a focus in Security and Automation knowledge, particuarly around pentesting and Ansible. Based in the UK."
+  description = "Jack Collins is a Linux Admin, with a passion for Security and Automation, particuarly around Pentesting and Ansible. Based in the UK."
   keywords = "linux, red hat, rhel, pentest, pentester, ansible, automation, bash, python"
   images = ["images/profile_pic.png"]
 
   # Home subtitle of the index page.
   #
-  homeSubtitle = "Linux Admin, with a focus in Security and Automation"
+  homeSubtitle = "Linux Admin, with a passion for Security and Automation"
 
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
