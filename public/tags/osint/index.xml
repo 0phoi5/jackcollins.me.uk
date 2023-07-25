@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 19 Jan 2023 17:50:57 +0100</lastBuildDate><atom:link href="/tags/osint/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jul 2023 09:00:00 +0100</lastBuildDate><atom:link href="/tags/osint/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Useful Pentesting Links</title>
+      <link>/articles/pentestinglinks/</link>
+      <pubDate>Tue, 25 Jul 2023 09:00:00 +0100</pubDate>
+      
+      <guid>/articles/pentestinglinks/</guid>
+      <description>Last updated : 25/07/2023
+A list of useful URLs, for all steps and aspects of a Penetration Test.
+This list will be updated as I discover more resources.
+If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.
+  Search Engines Reverse Image Searching EXIF Data Location Information Email Address Discovery Password OSINT Usernames &amp;amp; Accounts Specific People Search Phone Numbers   Search Engines Every good OSINT / Reconnaissance has to start somewhere.</description>
+    </item>
+    
     <item>
       <title>Specific Site OSINT</title>
       <link>/articles/specific_site_osint/</link>
@@ -18,18 +31,6 @@
 This page is dedicated to listing specific details about some of the major social media sites, and how to go about gathering data from them.
 Note: Intelligence X Tools are good for a number of these sites.
   LinkedIn Twitter Facebook Instagram Snapchat Reddit Tiktok Telegram   LinkedIn Of note is the fact that you won’t be able to see as much information about someone if you are a third+ connection to them.</description>
-    </item>
-    
-    <item>
-      <title>Useful Pentesting Links</title>
-      <link>/articles/pentestinglinks/</link>
-      <pubDate>Mon, 02 Jan 2023 10:02:34 +0100</pubDate>
-      
-      <guid>/articles/pentestinglinks/</guid>
-      <description>A list of useful URLs, for all steps and aspects of a Penetration Test.
-This list will be updated as I discover more resources.
-If you spot incorrect or broken URLs, or have ideas for additional resources I can add below, feel free to email jackcollins1434@yahoo.com. Thank you.
-  Search Engines Reverse Image Searching EXIF Data Location Information Email Address Discovery Password OSINT Usernames &amp;amp; Accounts Specific People Search Phone Numbers   Search Engines Every good OSINT / Reconnaissance has to start somewhere.</description>
     </item>
     
   </channel>

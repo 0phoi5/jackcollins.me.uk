@@ -31,7 +31,7 @@ Fortunately there's an easy way to automate the deregistering of specific AMIs, 
 In this scenario, we're going to assume that the images are all within the same AWS account and that we've applied a tag to them, with the format *Key=Purpose* and *Value=Patching*, which is easy to do at the time of taking the AMI.  
 It is possible to use other critera for filtering, such as the age of the AMI, the title, etc., simply amend the Python code below to suit your needs.
 
-**Note** : AWS Lambda functions are Region specific, so if you wish to clear down snapshots on the same account, from more than one Region, you will need to follow the steps below for each Region you take AMIs in.
+**Note** : AWS Lambda functions are Region specific, so if you wish to clear down snapshots on the same account, from more than one Region, you will need to follow the steps below (for the Function creation and Cloudwatch Trigger) each Region you take AMIs in.
 
 ---
 

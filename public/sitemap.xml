@@ -3,18 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/articles/</loc>
-    <lastmod>2023-07-24T11:34:11+01:00</lastmod>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/osint/</loc>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/pentesting/</loc>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/articles/pentestinglinks/</loc>
+    <lastmod>2023-07-25T09:00:00+01:00</lastmod>
   </url><url>
     <loc>/tags/aws/</loc>
     <lastmod>2023-07-24T11:34:11+01:00</lastmod>
   </url><url>
-    <loc>/</loc>
-    <lastmod>2023-07-24T11:34:11+01:00</lastmod>
-  </url><url>
     <loc>/tags/python/</loc>
-    <lastmod>2023-07-24T11:34:11+01:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2023-07-24T11:34:11+01:00</lastmod>
   </url><url>
     <loc>/articles/lambda_delete_snapshots/</loc>
@@ -53,9 +62,6 @@
     <loc>/tags/hackthebox/</loc>
     <lastmod>2023-04-10T20:15:08+01:00</lastmod>
   </url><url>
-    <loc>/tags/pentesting/</loc>
-    <lastmod>2023-04-10T20:15:08+01:00</lastmod>
-  </url><url>
     <loc>/articles/nmap/</loc>
     <lastmod>2023-03-02T20:14:52+01:00</lastmod>
   </url><url>
@@ -65,14 +71,8 @@
     <loc>/articles/rhel_workspaces/</loc>
     <lastmod>2023-02-23T20:06:30+01:00</lastmod>
   </url><url>
-    <loc>/tags/osint/</loc>
-    <lastmod>2023-01-19T17:50:57+01:00</lastmod>
-  </url><url>
     <loc>/articles/specific_site_osint/</loc>
     <lastmod>2023-01-19T17:50:57+01:00</lastmod>
-  </url><url>
-    <loc>/articles/pentestinglinks/</loc>
-    <lastmod>2023-01-02T10:02:34+01:00</lastmod>
   </url><url>
     <loc>/disclaimer/</loc>
     <lastmod>1970-01-01T13:37:00+01:00</lastmod>

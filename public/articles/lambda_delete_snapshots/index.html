@@ -40,7 +40,7 @@ However, there is no easy way to delete the Images afterwards. Each AMI has unde
 <meta itemprop="description" content="Scenario Steps  Create IAM Policy Create IAM Role Create Lambda Function Add Cloudwatch Trigger     Scenario Amazon Machine Images are a great way to back up your AWS EC2 instances, for example before patching.
 However, there is no easy way to delete the Images afterwards. Each AMI has underlying Elastic Block Store (EBS) Snapshots attached to it, often many, which to delete require you to deregister the AMI and then find each Snapshot to then remove, via the AWS GUI."><meta itemprop="datePublished" content="2023-07-24T11:34:11+01:00" />
 <meta itemprop="dateModified" content="2023-07-24T11:34:11+01:00" />
-<meta itemprop="wordCount" content="944"><meta itemprop="image" content="/images/profile_pic.png"/>
+<meta itemprop="wordCount" content="950"><meta itemprop="image" content="/images/profile_pic.png"/>
 <meta itemprop="keywords" content="aws,python," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/images/profile_pic.png"/>
@@ -161,7 +161,7 @@ However, there is no easy way to delete the Images afterwards. Each AMI has unde
 <p>Fortunately there&rsquo;s an easy way to automate the deregistering of specific AMIs, as well as the deletion of underlying, related Snapshots, via a Python Lambda function.</p>
 <p>In this scenario, we&rsquo;re going to assume that the images are all within the same AWS account and that we&rsquo;ve applied a tag to them, with the format <em>Key=Purpose</em> and <em>Value=Patching</em>, which is easy to do at the time of taking the AMI.<br>
 It is possible to use other critera for filtering, such as the age of the AMI, the title, etc., simply amend the Python code below to suit your needs.</p>
-<p><strong>Note</strong> : AWS Lambda functions are Region specific, so if you wish to clear down snapshots on the same account, from more than one Region, you will need to follow the steps below for each Region you take AMIs in.</p>
+<p><strong>Note</strong> : AWS Lambda functions are Region specific, so if you wish to clear down snapshots on the same account, from more than one Region, you will need to follow the steps below (for the Function creation and Cloudwatch Trigger) each Region you take AMIs in.</p>
 <hr>
 <h2 id="steps">Steps</h2>
 <h3 id="policy">Create an IAM Policy</h3>
