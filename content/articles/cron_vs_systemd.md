@@ -9,6 +9,7 @@ toc: false
 images:
 tags:
   - linux
+  - cheatsheet
 ---
 
 - [What are Cron Jobs?](#whatiscron)
@@ -21,7 +22,7 @@ tags:
 ## What are Cron Jobs?{#whatiscron}
 
 Cron is a job scheduler that has been around on Unix based operating systems for a long time.  
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 
 Cron uses something called the *crontab*, or *Command Run On Table*, to store it's jobs, usually located under */var/spool/cron/*. Each user has their own crontab and cron jobs, and the jobs run as that user, with that user's permissions and abilities.
 
@@ -65,7 +66,7 @@ On modern Linux systems, there is a better alternative now available that should
 
 Systemd timers are similar to cron jobs, in the way that they run specific commands or scripts at set intervals or after specific events take place like system boot.
 
-You're probably already familiar with systemd's administrator-owned (writable) unit files, stored in */etc/systemd/system*. Well, systemd timers are stored in the same location, with the extension *.timer*.  
+You're probably already familiar with systemd's administrator-owned (writeable) unit files, stored in */etc/systemd/system*. Well, systemd timers are stored in the same location, with the extension *.timer*.  
 You can view all timers that are currently in place using ```systemd status *timer```.
 
 I'll cover the creation of a new systemd timer below.
@@ -79,7 +80,7 @@ There are a few good reasons to use systemd timers over cron jobs;
 1. Systemd timers can be configured in a similar way to unit files; **dependencies can be defined**. This means we can wait for specific conditions to be in place before the timer triggers, such as certain services running.
 2. **Failure handling** is available, meaning that if a job fails then we can define conditions for it to be tried again.
 3. Systemd timers have **built-in logging**, so we can easily track when a timer last ran and whether it was successful, something not readily available in cron without manually adding to our scripts.
-4. **More options** are available, without us having to add them in to scripts called by cron, such as randomised delays and tighter timer accuracry (cron is limited to full minutes only)
+4. **More options** are available, without us having to add them in to scripts called by cron, such as randomised delays and tighter timer accuracy (cron is limited to full minutes only)
 
 There are also a couple of considerations;
 

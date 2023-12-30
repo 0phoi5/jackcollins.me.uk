@@ -15,7 +15,7 @@
       
       <guid>/articles/cron_vs_systemd/</guid>
       <description>What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&amp;rsquo;s jobs, usually located under /var/spool/cron/.</description>
     </item>
     

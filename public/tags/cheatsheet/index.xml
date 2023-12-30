@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 27 Jun 2023 12:29:42 +0100</lastBuildDate><atom:link href="/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Dec 2023 09:00:11 +0100</lastBuildDate><atom:link href="/tags/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>You should use Systemd Timers instead of Cron Jobs</title>
+      <link>/articles/cron_vs_systemd/</link>
+      <pubDate>Sat, 30 Dec 2023 09:00:11 +0100</pubDate>
+      
+      <guid>/articles/cron_vs_systemd/</guid>
+      <description>What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+Cron uses something called the crontab, or Command Run On Table, to store it&amp;rsquo;s jobs, usually located under /var/spool/cron/.</description>
+    </item>
+    
     <item>
       <title>Ansible Bastion / Jumpbox Configuration</title>
       <link>/articles/ansible_bastion/</link>

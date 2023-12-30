@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="map[name:Jack Collins]">
 <meta name="description" content="What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&amp;rsquo;s jobs, usually located under /var/spool/cron/." />
-<meta name="keywords" content="linux, red hat, rhel, pentest, pentester, ansible, automation, bash, python, linux" />
+<meta name="keywords" content="linux, red hat, rhel, pentest, pentester, ansible, automation, bash, python, linux, cheatsheet" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="/articles/cron_vs_systemd/" />
@@ -39,24 +39,24 @@ Cron uses something called the crontab, or Command Run On Table, to store it&amp
 
 <meta itemprop="name" content="You should use Systemd Timers instead of Cron Jobs">
 <meta itemprop="description" content="What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&rsquo;s jobs, usually located under /var/spool/cron/."><meta itemprop="datePublished" content="2023-12-30T09:00:11+01:00" />
 <meta itemprop="dateModified" content="2023-12-30T09:00:11+01:00" />
 <meta itemprop="wordCount" content="837"><meta itemprop="image" content="/images/profile_pic.png"/>
-<meta itemprop="keywords" content="linux," />
+<meta itemprop="keywords" content="linux,cheatsheet," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/images/profile_pic.png"/>
 
 <meta name="twitter:title" content="You should use Systemd Timers instead of Cron Jobs"/>
 <meta name="twitter:description" content="What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&rsquo;s jobs, usually located under /var/spool/cron/."/>
 
 
 
     <meta property="og:title" content="You should use Systemd Timers instead of Cron Jobs" />
 <meta property="og:description" content="What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&rsquo;s jobs, usually located under /var/spool/cron/." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/articles/cron_vs_systemd/" /><meta property="og:image" content="/images/profile_pic.png"/><meta property="article:section" content="articles" />
@@ -156,7 +156,7 @@ Cron uses something called the crontab, or Command Run On Table, to store it&rsq
 <hr>
 <h2 id="whatiscron">What are Cron Jobs?</h2>
 <p>Cron is a job scheduler that has been around on Unix based operating systems for a long time.<br>
-It is used to run commads or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.</p>
+It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.</p>
 <p>Cron uses something called the <em>crontab</em>, or <em>Command Run On Table</em>, to store it&rsquo;s jobs, usually located under <em>/var/spool/cron/</em>. Each user has their own crontab and cron jobs, and the jobs run as that user, with that user&rsquo;s permissions and abilities.</p>
 <p>Cron has been around a very long time, and some of it&rsquo;s advantages are that it is available on almost every Unix-based system (Linux being based on Unix) as well as the fact that it is really simple to learn and use.</p>
 <p>Cron uses the <em>crontab</em> command to <strong>e</strong>dit and <strong>l</strong>ist Cron Jobs;</p>
@@ -180,7 +180,7 @@ It is used to run commads or scripts at specific intervals of time, for example 
 <hr>
 <h2 id="whatissystemd">What are Systemd Timers?</h2>
 <p>Systemd timers are similar to cron jobs, in the way that they run specific commands or scripts at set intervals or after specific events take place like system boot.</p>
-<p>You&rsquo;re probably already familiar with systemd&rsquo;s administrator-owned (writable) unit files, stored in <em>/etc/systemd/system</em>. Well, systemd timers are stored in the same location, with the extension <em>.timer</em>.<br>
+<p>You&rsquo;re probably already familiar with systemd&rsquo;s administrator-owned (writeable) unit files, stored in <em>/etc/systemd/system</em>. Well, systemd timers are stored in the same location, with the extension <em>.timer</em>.<br>
 You can view all timers that are currently in place using <code>systemd status *timer</code>.</p>
 <p>I&rsquo;ll cover the creation of a new systemd timer below.</p>
 <hr>
@@ -190,7 +190,7 @@ You can view all timers that are currently in place using <code>systemd status *
 <li>Systemd timers can be configured in a similar way to unit files; <strong>dependencies can be defined</strong>. This means we can wait for specific conditions to be in place before the timer triggers, such as certain services running.</li>
 <li><strong>Failure handling</strong> is available, meaning that if a job fails then we can define conditions for it to be tried again.</li>
 <li>Systemd timers have <strong>built-in logging</strong>, so we can easily track when a timer last ran and whether it was successful, something not readily available in cron without manually adding to our scripts.</li>
-<li><strong>More options</strong> are available, without us having to add them in to scripts called by cron, such as randomised delays and tighter timer accuracry (cron is limited to full minutes only)</li>
+<li><strong>More options</strong> are available, without us having to add them in to scripts called by cron, such as randomised delays and tighter timer accuracy (cron is limited to full minutes only)</li>
 </ol>
 <p>There are also a couple of considerations;</p>
 <ol>
@@ -258,6 +258,7 @@ WantedBy=timers.target
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
 
         <span class="tag"><a href="/tags/linux/">linux</a></span>
+        <span class="tag"><a href="/tags/cheatsheet/">cheatsheet</a></span>
         
     </p>
 
