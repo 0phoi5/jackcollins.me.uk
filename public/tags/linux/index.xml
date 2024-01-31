@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 30 Dec 2023 09:00:11 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 31 Jan 2024 01:00:00 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS curl to 169.254.169.254 failing, 401 Unauthorized</title>
+      <link>/articles/ec2_imdsv2/</link>
+      <pubDate>Wed, 31 Jan 2024 01:00:00 +0100</pubDate>
+      
+      <guid>/articles/ec2_imdsv2/</guid>
+      <description>Scenario Resolution   Scenario As part of my simple bash script to automate AMI creation in EC2, using AWS CLI, a call is made to the &amp;lsquo;special IP address&amp;rsquo; 169.254.169.254 to retrieve the Instance ID for the current EC2 server.
+This Instance ID is required in the create-image command I am using, as below, but you may have your own scenarios for using metadata provided by 169.254.169.254.
+aws ec2 create-image --instance-id $(curl -s http://169.</description>
+    </item>
+    
     <item>
       <title>You should use Systemd Timers instead of Cron Jobs</title>
       <link>/articles/cron_vs_systemd/</link>
