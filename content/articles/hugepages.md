@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Huge Pages in Linux"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-04-14T10:32:22+01:00
 draft: false
 toc: false

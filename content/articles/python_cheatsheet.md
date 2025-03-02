@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Python Basics"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-04-18T06:00:00+01:00
 draft: false
 toc: false

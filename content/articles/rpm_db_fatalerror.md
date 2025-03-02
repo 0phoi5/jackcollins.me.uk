@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "RPM / Yum - Fatal Error, run database recovery"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-04-17T12:31:14+01:00
 draft: false
 toc: false

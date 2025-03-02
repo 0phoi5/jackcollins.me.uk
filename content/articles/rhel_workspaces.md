@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Amazon Workspaces on RHEL based distros"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-02-23T20:06:30+01:00
 draft: false
 toc: false

@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "You should use Systemd Timers instead of Cron Jobs"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-12-30T09:00:11+01:00
 draft: false
 toc: false

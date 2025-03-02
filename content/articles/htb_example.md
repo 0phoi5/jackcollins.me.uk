@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "A very basic HackTheBox pentest example"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-04-10T20:15:08+01:00
 draft: false
 toc: false

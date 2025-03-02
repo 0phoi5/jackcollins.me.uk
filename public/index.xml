@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 31 Jan 2024 01:00:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Dec 2024 20:15:32 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A lifestyle that supports a knowledge-based career</title>
+      <link>/articles/min_med_tech/</link>
+      <pubDate>Sun, 15 Dec 2024 20:15:32 +0100</pubDate>
+      
+      <guid>/articles/min_med_tech/</guid>
+      <description>When it comes to technical careers which revolve around knowledge and critical thinking, most will consider things like education, courses and experience to be the only methods for improvement. But this misses a fundamental fact about work/life balance, in that it works both ways. Managing our diet, stress, brain health and other factors that affect critical thinking can have a huge impact on our ability to be the very best in our careers.</description>
+    </item>
+    
     <item>
       <title>AWS curl to 169.254.169.254 failing, 401 Unauthorized</title>
       <link>/articles/ec2_imdsv2/</link>
@@ -109,16 +118,6 @@ sudo rm -rf /var/cache/yum/* sudo yum makecache If that doesn&amp;rsquo;t resolv
       <guid>/articles/hugepages/</guid>
       <description>What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
 Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments.</description>
-    </item>
-    
-    <item>
-      <title>A very basic HackTheBox pentest example</title>
-      <link>/articles/htb_example/</link>
-      <pubDate>Mon, 10 Apr 2023 20:15:08 +0100</pubDate>
-      
-      <guid>/articles/htb_example/</guid>
-      <description>Reconnaissance Enumeration Gaining Initial Access Privilege Escalation Capture The Flag Conclusion / TL;DR   Reconnaissance The first thing you&amp;rsquo;ll want to do, when starting any penetration test, is scan for open ports. We&amp;rsquo;ll need to recon the server for the OS and running services, so we can start to figure out an attack vector.
-We&amp;rsquo;ll start with an Nmap scan, although you could easily use another tool. See my Nmap tool guide for further information.</description>
     </item>
     
   </channel>

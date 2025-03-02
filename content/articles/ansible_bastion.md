@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Ansible Bastion / Jumpbox Configuration"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-06-27T12:29:42+01:00
 draft: false
 toc: false

@@ -2,6 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Specific Site OSINT"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-01-19T17:50:57+01:00
 draft: false
 toc: false

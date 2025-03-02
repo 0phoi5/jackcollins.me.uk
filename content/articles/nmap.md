@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "An overview of Nmap"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-03-02T20:14:52+01:00
 draft: false
 toc: false

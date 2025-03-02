@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "AWS curl to 169.254.169.254 failing, 401 Unauthorized"
-subtitle: "Including how to create AMIs from the EC2 command line"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2024-01-31T01:00:00+01:00
 draft: false
 toc: false

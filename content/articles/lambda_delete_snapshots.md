@@ -2,7 +2,7 @@
 author:
   name: "Jack Collins"
 title: "Using AWS Lambda to automate AMI & Snapshots deletion"
-subtitle: "jackcollins.me.uk | Linux Admin UK"
+subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
 date: 2023-07-24T11:34:11+01:00
 draft: false
 toc: false
