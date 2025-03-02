@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 15 Dec 2024 20:15:32 +0100</lastBuildDate><atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Feb 2025 20:12:48 +0100</lastBuildDate><atom:link href="/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some advanced commands for Linux administration</title>
+      <link>/articles/advanced_commands/</link>
+      <pubDate>Mon, 03 Feb 2025 20:12:48 +0100</pubDate>
+      
+      <guid>/articles/advanced_commands/</guid>
+      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for reference.
+ Resource Management View the CPU load of a specific process only
+top -p $(pgrep -d, appserver)
+Limit the CPU usage of a process to 25%
+cpulimit -e backup.sh -l 25
+Migrate a running process to a different CPU core without restarting it
+taskset -p 2 &amp;lt;PID&amp;gt;
+Bind a process to specific CPU cores</description>
+    </item>
+    
     <item>
       <title>A lifestyle that supports a knowledge-based career</title>
       <link>/articles/min_med_tech/</link>
@@ -108,16 +124,6 @@ multiple lines!”””) # Multi-line string</description>
       <description>Scenario When running yum clean all, or yum update, you get an error similar to the following;
 error: rpmdb: BDB0113 Thread/process #/# failed: BDB1507 Thread died in Berkley DB library error: db5 error(-30973) from dbenv-&amp;gt;failchk BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery error: cannot open Packages database in /var/lib/rpm CRITICAL:yum.main: Error: rpmdb open failed  Resolution Firstly, try clearing the yum cache and then rebuilding it, via;
 sudo rm -rf /var/cache/yum/* sudo yum makecache If that doesn&amp;rsquo;t resolve, kill all yum related processes, delete the cache and all metadata, and rebuild;</description>
-    </item>
-    
-    <item>
-      <title>Huge Pages in Linux</title>
-      <link>/articles/hugepages/</link>
-      <pubDate>Fri, 14 Apr 2023 10:32:22 +0100</pubDate>
-      
-      <guid>/articles/hugepages/</guid>
-      <description>What are Huge Pages? Checking the current status of Huge Pages How do I amend Huge Pages? Calculating Huge Pages Miscellaneous notes on Huge Pages   What are Huge Pages? Systems with large amounts of RAM may mean Huge Pages need to be implemented.
-Each process has several physical memory segments allocated. To keep them all ‘tidy’ and as near to each other as possible, to keep the system running as fast as possible, the system builds a ‘memory map’, a table, to organise the memory segments.</description>
     </item>
     
   </channel>

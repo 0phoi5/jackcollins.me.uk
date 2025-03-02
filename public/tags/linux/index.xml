@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 31 Jan 2024 01:00:00 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Feb 2025 20:12:48 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some advanced commands for Linux administration</title>
+      <link>/articles/advanced_commands/</link>
+      <pubDate>Mon, 03 Feb 2025 20:12:48 +0100</pubDate>
+      
+      <guid>/articles/advanced_commands/</guid>
+      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for reference.
+ Resource Management View the CPU load of a specific process only
+top -p $(pgrep -d, appserver)
+Limit the CPU usage of a process to 25%
+cpulimit -e backup.sh -l 25
+Migrate a running process to a different CPU core without restarting it
+taskset -p 2 &amp;lt;PID&amp;gt;
+Bind a process to specific CPU cores</description>
+    </item>
+    
     <item>
       <title>AWS curl to 169.254.169.254 failing, 401 Unauthorized</title>
       <link>/articles/ec2_imdsv2/</link>
