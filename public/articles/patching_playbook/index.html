@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="map[name:Jack Collins]">
+<meta name="description" content="A couple of years ago I completed the Red Hat Certified Specialist in Ansible Automation course and then took on full onus of patching 600&#43; Linux servers, where patching was still being done mostly manually.
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops." />
+<meta name="keywords" content="linux, red hat, rhel, pentest, pentester, ansible, automation, bash, python, ansible" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/articles/patching_playbook/" />
+
+
+    <title>
+        
+            An Ansible patching Playbook :: Jack Collins  — Linux Admin | Automation | Security | Monitoring | UK
+        
+    </title>
+
+
+
+
+
+<link rel="stylesheet" href="/main.f65e09c8185054893957dfcdc776fa9ce9fc62f0b08aa061db93060f56459776.css" integrity="sha256-9l4JyBhQVIk5V9/Nx3b6nOn8YvCwiqBh25MGD1ZFl3Y=" crossorigin="anonymous">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="An Ansible patching Playbook">
+<meta itemprop="description" content="A couple of years ago I completed the Red Hat Certified Specialist in Ansible Automation course and then took on full onus of patching 600&#43; Linux servers, where patching was still being done mostly manually.
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops."><meta itemprop="datePublished" content="2025-02-03T20:14:48+01:00" />
+<meta itemprop="dateModified" content="2025-02-03T20:14:48+01:00" />
+<meta itemprop="wordCount" content="4280"><meta itemprop="image" content="/images/profile_pic.png"/>
+<meta itemprop="keywords" content="ansible," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/images/profile_pic.png"/>
+
+<meta name="twitter:title" content="An Ansible patching Playbook"/>
+<meta name="twitter:description" content="A couple of years ago I completed the Red Hat Certified Specialist in Ansible Automation course and then took on full onus of patching 600&#43; Linux servers, where patching was still being done mostly manually.
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops."/>
+
+
+
+    <meta property="og:title" content="An Ansible patching Playbook" />
+<meta property="og:description" content="A couple of years ago I completed the Red Hat Certified Specialist in Ansible Automation course and then took on full onus of patching 600&#43; Linux servers, where patching was still being done mostly manually.
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/articles/patching_playbook/" /><meta property="og:image" content="/images/profile_pic.png"/><meta property="article:section" content="articles" />
+<meta property="article:published_time" content="2025-02-03T20:14:48+01:00" />
+<meta property="article:modified_time" content="2025-02-03T20:14:48+01:00" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2025-02-03 20:14:48 &#43;0100 &#43;0100" />
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                jackcollins.me.uk$ </span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/articles">Articles</a></li><li><a href="/documents/Jack_Collins_Platform_Engineer_CV.pdf">Download CV</a></li><li><a href="/tags">Tags</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/articles/patching_playbook/">An Ansible patching Playbook</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <p>A couple of years ago I completed the <em>Red Hat Certified Specialist in Ansible Automation</em> course and then took on full onus of patching 600+ Linux servers, where patching was still being done mostly manually.<br>
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.</p>
+<p>Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops.</p>
+<p>One would think that a Playbook for patching would be fairly simplistic (dnf update, reboot?), however there are a lot more stages to patching to be considered;</p>
+<ul>
+<li>Confirming each server has correct configuration for patching</li>
+<li>Checking each server against a &lsquo;blacklist&rsquo;</li>
+<li>Placing servers in Maintenance Mode within monitoring software</li>
+<li>Checking each server for updates and not going ahead with further tasks should no updates be available (conforming to the Integrity and Availability of the CIA Triad)</li>
+<li>Sending wall messages</li>
+<li>Detecting applications that may have issues if the server just reboots, and shutting them down safely</li>
+<li>Taking a server snapshot/backup</li>
+<li>Making sure the servers come back up after reboot</li>
+<li>Logging everything</li>
+</ul>
+<p>With all of the above in mind I wrote the following Ansible Playbook, which was then taken up by our business as <em>the</em> patching solution for Linux, moved over to Git, and has worked very well ever since.<br>
+It scales nicely, it&rsquo;s easy to maintain and it integrates well in to CI/CD solutions.</p>
+<p><strong>This Playbook is <a href="https://github.com/0phoi5/ansible/tree/main/patching_playbook">available on my GitHub</a>.</strong></p>
+<hr>
+<h2 id="patchyml">patch.yml</h2>
+<p>This is the file that triggers the patching, located in the &lsquo;root&rsquo; directory of your Playbook (where the &lsquo;roles&rsquo; directory is also located).</p>
+<p>It calls each of the roles within the <em>roles</em> directory, in the order shown below.<br>
+Usually the call to each role is a bit simpler than the below syntax, but we&rsquo;re wrapping the whole thing in a <em>block</em>, with an <em>always</em>, in order to have a summary correctly displayed at the end, so use the same syntax as below if you want that to work.</p>
+<p>To run it from the CLI, use <code>ansible-playbook patch.yml -e &quot;deployment=to_be_patched&quot;</code></p>
+<p>This particular Playbook works from /ansible/patching/, but you can amend any sections of it that specifically refer to that location, or use relative paths if appropriate.</p>
+<p>The -e (&ndash;extra-vars) option is used because my inventory file has a group called &lsquo;to_be_patched&rsquo; in it. This allows me to throw in new groups on-the-fly, should I ever need to mop-up a few servers at the end, for example (it saves waiting for the Ansible to do a yum check-update on all servers, every time).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;PLAY - Preflight / localhost stuff&#34;</span>
+  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">connection</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">gather_facts</span>: <span style="color:#66d9ef">true</span>
+
+  <span style="color:#f92672">roles</span>:
+    - <span style="color:#ae81ff">trigger</span>
+    - <span style="color:#ae81ff">check_deployment_var_defined</span>
+    - <span style="color:#ae81ff">get_list_of_blacklisted_hosts</span>
+
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;PLAY - Patching&#34;</span>
+  <span style="color:#f92672">hosts</span>: <span style="color:#e6db74">&#34;{{ deployment }}&#34;</span>
+  <span style="color:#f92672">gather_facts</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">serial</span>: <span style="color:#ae81ff">30</span>
+
+  <span style="color:#f92672">tasks</span>:
+    - <span style="color:#f92672">block</span>:
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">blacklist</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">check_everything_configured</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">yum_clean_all</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#75715e"># This role sets variable &#34;yumoutput.results&#34; to non-zero if patches</span>
+          <span style="color:#75715e"># are available for the server.</span>
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">check_server_needs_update</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wall</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">place_in_maintenance_mode</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">stop_applications</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">take_snapshot</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">patch</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">reboot</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">yum_clean_all</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">post_check</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      - <span style="color:#f92672">include_role</span>:
+          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">remove_snapshot</span>
+        <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+      <span style="color:#f92672">always</span>:
+       - <span style="color:#f92672">import_role</span>:
+           <span style="color:#f92672">name</span>: <span style="color:#ae81ff">summary</span>
+         <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;PLAY - Final Word&#34;</span>
+  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">connection</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">gather_facts</span>: <span style="color:#66d9ef">false</span>
+
+  <span style="color:#f92672">roles</span>:
+    - <span style="color:#ae81ff">summary</span>
+</code></pre></div><hr>
+<h2 id="rolestriggertasksmainyml">roles/trigger/tasks/main.yml</h2>
+<p>The whole patching Playbook, and each role&rsquo;s tasks, are wrapped in a block that allows us to send information about the state of the patching to a log file, output.log.</p>
+<p>We can then use output.log to see when the patching was run, and for each server how everything went. This first role is simply to start that log off, entering the current time and date to a new line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding trigger message to output.log&#34;</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">&#34;echo &#39;################ Playbook triggered at {{ ansible_date_time.date }} {{ ansible_date_time.time }}</span> <span style="color:#75715e">##############&#39; &gt;&gt; /ansible/patching/output.log</span>
+    <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+</code></pre></div><hr>
+<h2 id="rolescheck_deployment_var_definedtasksmainyml">roles/check_deployment_var_defined/tasks/main.yml</h2>
+<p>This is just making sure that, as mentioned above, the extra variable &lsquo;deployment&rsquo; is defined, before we continue.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">fail</span>:
+    <span style="color:#f92672">msg</span>:
+      - <span style="color:#e6db74">&#34;You need to define the Deployment type to patch in order to run this Playbook. Please use; ansible-playbook patch.yml -e &#39;deployment=[FOO]&#39;, where FOO is either to_be_patched (for manual patching purposes), or a group defined within the inventory file.&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">deployment is not defined</span>
+  <span style="color:#f92672">tags</span>:
+    - <span style="color:#ae81ff">config</span>
+</code></pre></div><hr>
+<h2 id="rolesget_list_of_blacklisted_hoststasksmainyml">roles/get_list_of_blacklisted_hosts/tasks/main.yml</h2>
+<p>This gathers a list of hosts from the file named &lsquo;blacklist&rsquo; and saves it for later reference.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Gathering a list of all the hosts in the blacklist file&#34;</span>
+  <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">grep -v &#39;^#&#39; /ansible/patching/blacklist</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">blacklist_output</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;&#34;</span>[[[ <span style="color:#ae81ff">INFO ]]] - Here is the content of the blacklist file&#34;</span>
+  <span style="color:#f92672">debug</span>:
+    <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;{{ blacklist_output.stdout_lines }}&#34;</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Set list of hosts found in the blacklist file as a fact for later use&#34;</span>
+  <span style="color:#f92672">set_fact</span>: <span style="color:#ae81ff">blacklist_hosts=&#34;{{ blacklist_output.stdout }}&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolesblacklisttasksmainyml">roles/blacklist/tasks/main.yml</h2>
+<p>This uses the output fact from the role above to make sure none of the hostnames in the &lsquo;inventory&rsquo; file are mentioned in the file named &lsquo;blacklist&rsquo;.<br>
+If they are, the Playbook will ignore them, with a failure message on-screen and sent to output.log.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Check that each server is not blacklisted from being patched via Ansible&#34;</span>
+    <span style="color:#f92672">assert</span>:
+      <span style="color:#f92672">that</span>:
+        - <span style="color:#e6db74">&#34;&#39;{{ inventory_hostname }}&#39; not in &#39;{{ hostvars[&#39;localhost&#39;][&#39;blacklist_hosts&#39;] }}&#39;&#34;</span>
+      <span style="color:#f92672">success_msg</span>: <span style="color:#e6db74">&#34;{{ inventory_hostname }} is not blacklisted and can therefore be patched via Ansible.&#34;</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Server is blacklisted&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Server {{ inventory_hostname }} is specifically blacklisted, via the &#39;blacklist&#39; file, from being patched using this Playbook.&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolescheck_everything_configuredtasksmainyml">roles/check_everything_configured/tasks/main.yml</h2>
+<p>You could add anything you want to here, whatever is appropriate for your environment.<br>
+In my case, I wanted to;</p>
+<ul>
+<li>Make sure any servers being patched were RHEL (anything not RHEL wasn&rsquo;t under our remit to patch)</li>
+<li>Roll some bespoke monitoring files out, making sure the monitoring on all servers was kept aligned alongside patching</li>
+<li>Determine if the server was physical, and not virtual, because we don&rsquo;t want to then try and take a snapshot of it</li>
+<li>Clean up old rescue kernels that were no longer needed (housekeeping)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Checking server is Red Hat&#34;</span>
+    <span style="color:#f92672">assert</span>:
+      <span style="color:#f92672">that</span>:
+        - <span style="color:#ae81ff">ansible_distribution == &#39;RedHat&#39;</span>
+      <span style="color:#f92672">fail_msg</span>: <span style="color:#e6db74">&#34;This server is not RHEL.&#34;</span>
+      <span style="color:#f92672">success_msg</span>: <span style="color:#e6db74">&#34;Server is RHEL.&#34;</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Server is not Red Hat&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Server {{ inventory_hostname }} is not Red Hat.&#34;</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Rolling out all Check_MK bespoke scripts and plugins within /usr/lib/check_mk_agent&#34;</span>
+    <span style="color:#f92672">synchronize</span>:
+      <span style="color:#f92672">archive</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">checksum</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">recursive</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">delete</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#f92672">src</span>: <span style="color:#ae81ff">/usr/lib/check_mk_agent</span>
+      <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/usr/lib/</span>
+      <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">push</span>
+      <span style="color:#f92672">use_ssh_args</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">tags</span>:
+      - <span style="color:#ae81ff">config</span>
+      - <span style="color:#ae81ff">cmk</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to roll out Check_MK bespoke scripts and plugins to /usr/lib/check_mk_agent&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to roll out Check_MK bespoke scripts and plugins to /usr/lib/check_mk_agent, on {{ inventory_hostname }}. Is the Check_MK agent installed?&#34;</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Determining whether the server is Virtual or Physical&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">dmidecode -s system-manufacturer | grep -i VMware</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">server_phys_virt</span>
+    <span style="color:#f92672">changed_when</span>: <span style="color:#ae81ff">server_phys_virt.rc == 1</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">server_phys_virt.rc not in [0,1]</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to determine if the server is physical or virtual, using dmidecode.&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to determine if the server is physical or virtual, using dmidecode, on {{ inventory_hostname }}. This is unexpected and you may have to patch this server manually and take a look at the Ansible script.&#34;</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Setting whether the server is Virtual or Physical as a fact, for later use&#34;</span>
+  <span style="color:#f92672">set_fact</span>: <span style="color:#ae81ff">server_type=&#34;{{ server_phys_virt }}&#34;</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Cleaning up Rescue Kernels&#34;</span>
+  <span style="color:#f92672">shell</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">    for k in $(ls -1 /boot/vmlinuz-0-rescue-* 2&gt;/dev/null | grep -v &#34;$(cat /etc/machine-id)&#34;)
+</span><span style="color:#e6db74">    do
+</span><span style="color:#e6db74">      rm -f &#34;$k&#34; &#34;${k/vmlinuz-/initramfs-}.img&#34;
+</span><span style="color:#e6db74">      grubby --remove-kernel=&#34;$k&#34;
+</span><span style="color:#e6db74">    done</span>    
+</code></pre></div><hr>
+<h2 id="rolesyum_clean_alltasksmainyml">roles/yum_clean_all/tasks/main.yml</h2>
+<p>Before checking if there are any updates for each server, it&rsquo;s good practice to run a yum/dnf clean all.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Running yum clean all on each server&#34;</span>
+    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">yum clean all</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Failed to run yum clean all&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Failed to run yum clean all, on {{ inventory_hostname }}.&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolescheck_server_needs_updatetasksmainyml">roles/check_server_needs_update/tasks/main.yml</h2>
+<p>Now we check whether each server has any updates available.<br>
+If not, the server is skipped and a message goes to output.log (and our custom summary at the end of the Playbook), keeping in line with Integrity of data and Availability of the server (CIA Triad).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Checking each server for outstanding yum updates&#34;</span>
+  <span style="color:#f92672">yum</span>:
+    <span style="color:#f92672">list</span>: <span style="color:#ae81ff">updates</span>
+    <span style="color:#f92672">update_cache</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">yumoutput</span>
+  <span style="color:#f92672">changed_when</span>: <span style="color:#ae81ff">yumoutput.results|length &gt; 0</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding servers that are already up-to-date in to output.log&#34;</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [  OK  ] No outstanding updates&#39; &gt;&gt; /ansible/patching/output.log</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">yumoutput.results|length == 0</span>
+</code></pre></div><hr>
+<h2 id="roleswalltasksmainyml">roles/wall/tasks/main.yml</h2>
+<p>We have a few minutes between this role and the patching itself, so at this point we send a Wall message to the server to tell anyone logged on that it will be rebooted soon.<br>
+This gives people opportunity to save work (or scream) before the patching goes ahead.<br>
+99.9% of the time, of course, there&rsquo;s no one logged on, but better to be safe.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Sending wall message&#34;</span>
+  <span style="color:#f92672">command</span>: <span style="color:#ae81ff">wall This server is about to be patched via Ansible and will likely reboot in the next few minutes. Please save any work immediately.</span>
+</code></pre></div><hr>
+<h2 id="rolesplace_in_maintenance_modetasksmainyml">roles/place_in_maintenance_mode/tasks/main.yml</h2>
+<p>This is a specialised role for the environment we had.<br>
+In this case, the servers were being monitored by System Center Operations Manager (SCOM) and would alert administrators out-of-hours if the server was rebooted. We don&rsquo;t want that, so a SCORCH runbook was created to trigger Maintenance Mode on a server when a URL was called.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Placing each server in Maintenance Mode in SCOM&#34;</span>
+    <span style="color:#f92672">uri</span>:
+      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;http://scom_mm_hostname/MM/Home/InstantMM/?ComputerName={{ inventory_hostname }}.company-name.co.uk&amp;Min=240&amp;MMAction=Start&#34;</span>
+      <span style="color:#f92672">return_content</span>: <span style="color:#66d9ef">false</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">120</span>
+      <span style="color:#f92672">use_proxy</span>: <span style="color:#66d9ef">false</span>
+    <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Couldn&#39;t place server in Maintenance Mode in SCOM&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Server {{ inventory_hostname }} failed to go in to Maintenance Mode in SCOM.&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolesstop_applicationstasksmainyml">roles/stop_applications/tasks/main.yml</h2>
+<p>This role will be very specific to your own applications and needs.</p>
+<p>Sometimes there are applications or databases running on a server that we don&rsquo;t want to be affected by package updates or a reboot, so it&rsquo;s better to &lsquo;nicely&rsquo; shut them down before we patch.</p>
+<p>The below example is for Splunk, Tomcat and Oracle DBs.<br>
+We can also use the data from this role later on, to determine that these applications/services come back up successfully after reboot (check what&rsquo;s running now, check it&rsquo;s still running later).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Detecting Splunk&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">systemctl list-units | grep -wc splunk.service</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">splunk_service</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">splunk_service.rc == 257</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;No Splunk instances were found on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">splunk_service.stdout == &#39;0&#39;</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;!! WARNING !!! Splunk is running on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">splunk_service.stdout &gt; &#39;0&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to detect whether Splunk is running on the server.&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to determine if Splunk is running on {{ inventory_hostname }}. This is unexpected and may be an issue with the Ansible patching script.&#34;</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Stopping Splunk&#34;</span>
+    <span style="color:#f92672">service</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">splunk</span>
+      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">stopped</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">splunk_service.stdout != &#39;0&#39;</span>
+
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure Splunk shut down successfully&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o pid,cmd | grep &#34;splunkd.*start&#34; | grep -v -E &#34;grep|process-runner&#34; | awk &#39;{ print $1 }&#39; | head -n 1</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">splunk_success</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">splunk_success.stdout != &#34;&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">splunk_service.stdout != &#39;0&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Splunk did not shut down&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Splunk failed to shut down on {{ inventory_hostname }}.&#34;</span>
+
+<span style="color:#75715e">##############################################################</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Detecting Tomcat&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">systemctl list-units | grep -wc tomcat.service</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">tomcat_service</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">tomcat_service.rc == 257</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;No Tomcat instances were found on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">tomcat_service.stdout == &#39;0&#39;</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;!! WARNING !!! Tomcat is running on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">tomcat_service.stdout &gt; &#39;0&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to detect whether Tomcat is running on the server.&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to determine if Tomcat is running on {{ inventory_hostname }}. This is unexpected and may be an issue with the Ansible patching script.&#34;</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Stopping Tomcat&#34;</span>
+    <span style="color:#f92672">service</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">tomcat</span>
+      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">stopped</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">tomcat_service.stdout != &#39;0&#39;</span>
+
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure Tomcat shut down successfully&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o cmd | grep catalina.startup | grep -v grep | head -n 1</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">tomcat_success</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">tomcat_success.stdout != &#34;&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">tomcat_service.stdout != &#39;0&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Tomcat did not shut down&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Tomcat failed to shut down on {{ inventory_hostname }}.&#34;</span>
+
+<span style="color:#75715e">##############################################################</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Detecting Oracle Databases&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o cmd | grep ora_pmon_ | grep -v grep | cut -d&#34;_&#34; -f3 | sort</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">oracledb_service</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;No Oracle databases were found on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">oracledb_service.stdout == &#39;&#39;</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;!! WARNING !!! Oracle Databases are running on {{ inventory_hostname }}&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">oracledb_service.stdout != &#39;&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to detect Oracle DBs&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to determine if there are any Oracle Databases running on {{ inventory_hostname }}. This is unexpected and may be an issue with the Ansible patching script.&#34;</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Stopping Oracle Databases using script&#34;</span>
+    <span style="color:#f92672">shell</span>:
+      <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;/path/to/script/stop_dbs.sh&#34;</span>
+    <span style="color:#f92672">become</span>: <span style="color:#66d9ef">yes</span>
+    <span style="color:#f92672">become_user</span>: <span style="color:#ae81ff">oracle</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">oracledb_service.stdout != &#39;&#39;</span>
+
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure Oracle Databases shut down successfully&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o cmd | grep ora_pmon_ | grep -v grep | cut -d&#34;_&#34; -f3 | sort</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">oracle_success</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">oracle_success.stdout != &#34;&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">oracledb_service.stdout != &#39;&#39;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Oracle Databases failed to shut down&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Not all Oracle Databases successfully shut down on {{ inventory_hostname }}.&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolestake_snapshottasksmainyml">roles/take_snapshot/tasks/main.yml</h2>
+<p><strong>Note that this role is calling a role located in /ansible/snapshots</strong>.<br>
+I have included that role below this one, for reference.</p>
+<p>I chose to keep the snapshot role separate/stand-alone because it&rsquo;s very useful to call from other Playbooks as well.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+
+  - <span style="color:#f92672">include_role</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">/ansible/snapshots/roles/take_snapshot</span>
+    <span style="color:#f92672">vars</span>:
+      <span style="color:#f92672">host_to_snap</span>: <span style="color:#e6db74">&#34;{{ inventory_hostname }}&#34;</span>
+      <span style="color:#f92672">snap_reason</span>: <span style="color:#e6db74">&#34;Patching&#34;</span>
+      <span style="color:#f92672">snap_source</span>: <span style="color:#e6db74">&#34;input_source_here&#34;</span>
+    <span style="color:#f92672">when</span>: <span style="color:#ae81ff">server_type.rc == 0</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to take vSphere snapshot&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to take a vSphere Snapshot of {{ inventory_hostname }}. This could be because it has disks that can&#39;t be snapshot, although the playbook should be accounting for those, or the Unix vSphere user SVC_Linux_Patching couldn&#39;t find the hostname. You may need to take a manual snapshot to be on the safe side.&#34;</span>
+
+- <span style="color:#f92672">debug</span>:
+    <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Server {{ inventory_hostname }} is Physical, therefore a vSphere snapshot is irrelevant. Snapshot step will be skipped.&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">server_type.rc != 0</span>
+</code></pre></div><hr>
+<h2 id="ansiblesnapshotsrolestake_snapshotsmainyml">/ansible/snapshots/roles/take_snapshots/main.yml</h2>
+<p>See the comment on the previous role above.</p>
+<p>This role connects to vSphere and takes a snapshot of the host, using variables defined in the last role in the description of the snapshot.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Creating vSphere snapshot - Onprem servers&#34;</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;echo &#39;Connect-VIServer host1234.company-name.co.uk -User USERNAME -Password blablabla; New-Snapshot -VM &#39;{{ host_to_snap }}&#39; -Name \&#34;Ansible Automated Snapshot\&#34; -Confirm:$false -Description \&#34;Snapshot taken automatically via Ansible. The reason was given as: {{ snap_reason }}. The source was: {{ snap_source }}.\&#34; -Memory:$false; Disconnect-VIServer -Confirm:$false&#39; | pwsh | grep -i &#39;created&#39;&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#e6db74">&#34;&#39;onprem&#39; in inventory_hostname&#34;</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">snapshot_output</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Creating vSphere snapshot - DMZ servers&#34;</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;echo &#39;Connect-VIServer host5678.company-name.co.uk -User USERNAME -Password blablabla; New-Snapshot -VM &#39;{{ host_to_snap }}&#39; -Name \&#34;Ansible Automated Snapshot\&#34; -Confirm:$false -Description \&#34;Snapshot taken automatically via Ansible. The reason was given as: {{ snap_reason }}. The source was: {{ snap_source }}.\&#34; -Memory:$false; Disconnect-VIServer -Confirm:$false&#39; | pwsh | grep -i &#39;created&#39;&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#e6db74">&#34;&#39;dmz&#39; in inventory_hostname&#34;</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">snapshot_output</span>
+</code></pre></div><hr>
+<h2 id="rolespatchtasksmainyml">roles/patch/tasks/main.yml</h2>
+<p>Finally, we patch!</p>
+<p>Async and poll are used here, so that the connection doesn&rsquo;t just stay open and &lsquo;hang&rsquo;. This frees up network resources, as well as gives us a decent indication on-screen as to whether the patching is still taking place.<br>
+It also allows the role to time out, should patching fail to complete within a reasonable amount of time (without async and poll, we could end up with our Playbook just hanging indefinitely).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+  <span style="color:#75715e"># Trigger a yum update Ansible &#39;Job&#39; on each server, with a fail timeout of 12 minutes</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Triggering yum update on each server&#34;</span>
+    <span style="color:#f92672">yum</span>:
+      <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">latest</span>
+      <span style="color:#f92672">disable_gpg_check</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">async</span>: <span style="color:#ae81ff">1920</span>
+    <span style="color:#f92672">poll</span>: <span style="color:#ae81ff">0</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">yum_sleeper</span>
+
+  - <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Now patching {{ inventory_hostname }}. This may take a few minutes, please wait ... &#34;</span>
+
+  <span style="color:#75715e"># Await the result of the yum update, polling every 30 seconds for 10 minutes</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Awaiting yum update result&#34;</span>
+    <span style="color:#f92672">async_status</span>:
+      <span style="color:#f92672">jid</span>: <span style="color:#e6db74">&#34;{{ yum_sleeper.ansible_job_id }}&#34;</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">job_result</span>
+    <span style="color:#f92672">until</span>: <span style="color:#ae81ff">job_result.finished</span>
+    <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">60</span>
+    <span style="color:#f92672">delay</span>: <span style="color:#ae81ff">30</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] The yum update failed&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Yum update failed on {{ inventory_hostname }}. Is the repository configured correctly, and can the server communicate with it?&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolesreboottasksmainyml">roles/reboot/tasks/main.yml</h2>
+<p>Whilst we could add some additional tasks here to determine if a server does indeed need a reboot after patching (<code>needs-rebooting</code>), it was decided (and I think makes good sense) to reboot the servers every time.<br>
+This makes sure that they are all stable enough to come up correctly, along with their services, after patching, and during the allotted maintenance window for patching.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Rebooting servers&#34;</span>
+    <span style="color:#f92672">debug</span>:
+      <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;!!! WARNING !!! - Now rebooting {{ inventory_hostname }} and then testing it came back up. This may take a few minutes, please wait ... &#34;</span>
+
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Reboot output&#34;</span>
+    <span style="color:#f92672">reboot</span>:
+      <span style="color:#f92672">connect_timeout</span>: <span style="color:#ae81ff">10</span>
+      <span style="color:#f92672">pre_reboot_delay</span>: <span style="color:#ae81ff">0</span>
+      <span style="color:#f92672">post_reboot_delay</span>: <span style="color:#ae81ff">10</span>
+      <span style="color:#f92672">reboot_timeout</span>: <span style="color:#ae81ff">480</span>
+      <span style="color:#f92672">test_command</span>: <span style="color:#e6db74">&#34;uname -a&#34;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Server failed to reboot&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Server {{ inventory_hostname }} either failed to reboot, or did not reboot in a timely manner. Please check it manually to make sure it has rebooted and come back up correctly.&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolespost_checktasksmainyml">roles/post_check/tasks/main.yml</h2>
+<p>This is another role that is very specific to individual company requirements.</p>
+<ul>
+<li>We use the facts gathered during the <em>stop_applications</em> role above to determine what services were running on each server before reboot, and make sure they have come back up again after reboot.</li>
+<li>We send a list of updated packages to /tmp on each server, for reference if needed.</li>
+<li>Each server is now removed from Maintenance Mode in the monitoring software.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Let&#39;s wait 1 minute for everything to finish coming back up, before checking patching was successful&#34;</span>
+  <span style="color:#f92672">pause</span>:
+    <span style="color:#f92672">minutes</span>: <span style="color:#ae81ff">1</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure any relevant Oracle Databases came back up successfully&#34;</span>
+    <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o cmd | grep ora_pmon_ | grep -v grep | cut -d&#34;_&#34; -f3 | sort</span>
+    <span style="color:#f92672">register</span>: <span style="color:#ae81ff">oracle_back_up</span>
+    <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">oracle_back_up.stdout == &#34;&#34;</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Oracle DBs failed to come back up&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;There were Oracle DBs detected on {{ inventory_hostname }}, but they don&#39;t appear to have come back up. Please contact an Oracle DBA to make sure the DBs are restarted on {{ inventory_hostname }}.&#34;</span>
+  <span style="color:#f92672">when</span>:
+    - <span style="color:#ae81ff">oracledb_service.stdout != &#39;&#39;</span>
+
+- <span style="color:#f92672">block</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure Splunk came back up successfully&#34;</span>
+      <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o pid,cmd | grep &#34;splunkd.*start&#34; | grep -v -E &#34;grep|process-runner&#34; | awk &#39;{ print $1 }&#39; | head -n 1</span>
+      <span style="color:#f92672">register</span>: <span style="color:#ae81ff">splunk_back_up</span>
+      <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">splunk_back_up.stdout == &#34;&#34;</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Splunk failed to come back up&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Splunk was detected on {{ inventory_hostname }}, but it doesn&#39;t appear to have come back up. Please check why and start it manually.&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">splunk_service.stdout != &#39;0&#39;</span>
+
+- <span style="color:#f92672">block</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Making sure Tomcat came back up successfully&#34;</span>
+      <span style="color:#f92672">shell</span>: <span style="color:#ae81ff">ps -e -o cmd | grep catalina.startup | grep -v grep | head -n 1</span>
+      <span style="color:#f92672">register</span>: <span style="color:#ae81ff">tomcat_back_up</span>
+      <span style="color:#f92672">failed_when</span>: <span style="color:#ae81ff">tomcat_back_up.stdout == &#34;&#34;</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Tomcat failed to come back up&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Tomcat was detected on {{ inventory_hostname }}, but it doesn&#39;t appear to have come back up. Please check why and start it manually.&#34;</span>
+  <span style="color:#f92672">when</span>: <span style="color:#ae81ff">tomcat_service.stdout != &#39;0&#39;</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Gathering a list of updated packages&#34;</span>
+  <span style="color:#f92672">shell</span>: <span style="color:#e6db74">&#39;rpm -qa --last | grep &#34;$(date +%a\ %d\ %b\ %Y)&#34; | cut -f 1 -d &#34; &#34;&#39;</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">yumlistresult</span>
+  <span style="color:#f92672">changed_when</span>: <span style="color:#66d9ef">false</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding list of packages, updated today, to a temporary log file in /tmp&#34;</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;echo &#39;{{ ansible_date_time.date }} - {{ inventory_hostname }} - {{ yumlistresult.stdout }}&#39; &gt; /tmp/{{ inventory_hostname }}_packages_updated.log&#34;</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+
+- <span style="color:#f92672">block</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Taking each server out of Maintenance Mode in SCOM&#34;</span>
+    <span style="color:#f92672">uri</span>:
+      <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;http://hostname/MM/Home/InstantMM/?ComputerName={{ inventory_hostname }}.company-name.co.uk&amp;MMAction=Stop&#34;</span>
+      <span style="color:#f92672">return_content</span>: <span style="color:#66d9ef">false</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">120</span>
+    <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Failed to remove server from SCOM Maintenance Mode&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Failed to remove {{ inventory_hostname }} from SCOM Maintenance Mode.&#34;</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding successfully patched server to output.log&#34;</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [  OK  ] Patched&#39; &gt;&gt; /ansible/patching/output.log</span>
+  <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+</code></pre></div><hr>
+<h2 id="rolesremove_snapshottasksmainyml">roles/remove_snapshot/tasks/main.yml</h2>
+<p>This is another call to vSphere, to delete the snapshots taken before patching.</p>
+<p>Of course, you don&rsquo;t need to add this role, if you want to keep the snapshots for a while.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">block</span>:
+
+   - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Removing snapshot for {{ inventory_hostname }} - onprem servers&#34;</span>
+     <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+     <span style="color:#f92672">shell</span>:
+       <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;echo &#39;Connect-VIServer host1234.company-name.co.uk -User USERNAME -Password blablabla; Get-VM &#39;{{ inventory_hostname }}&#39; | Get-Snapshot | Where-Object Name -like \&#34;Ansible Automated Snapshot\&#34; | Remove-Snapshot -Confirm:$false; Disconnect-VIServer -Confirm:$false&#39; | pwsh&#34;</span>
+     <span style="color:#f92672">when</span>: <span style="color:#e6db74">&#34;&#39;onprem&#39; in inventory_hostname&#34;</span>
+
+   - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Removing snapshot for {{ inventory_hostname }} - dmz servers&#34;</span>
+     <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+     <span style="color:#f92672">shell</span>:
+       <span style="color:#f92672">cmd</span>: <span style="color:#e6db74">&#34;echo &#39;Connect-VIServer host5678.company-name.co.uk -User USERNAME -Password blablabla; Get-VM &#39;{{ inventory_hostname }}&#39; | Get-Snapshot | Where-Object Name -like \&#34;Ansible Automated Snapshot\&#34; | Remove-Snapshot -Confirm:$false; Disconnect-VIServer -Confirm:$false&#39; | pwsh&#34;</span>
+     <span style="color:#f92672">when</span>: <span style="color:#e6db74">&#34;&#39;dmz&#39; in inventory_hostname&#34;</span>
+
+  <span style="color:#f92672">rescue</span>:
+    - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Adding reason for failure to output.log&#34;</span>
+      <span style="color:#f92672">shell</span>:
+        <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">echo &#39;{{ ansible_date_time.date }} {{ ansible_date_time.time }} - {{ inventory_hostname }} - [ FAIL ] Unable to remove vSphere snapshot&#39; &gt;&gt; /ansible/patching/output.log</span>
+      <span style="color:#f92672">delegate_to</span>: <span style="color:#ae81ff">localhost</span>
+    - <span style="color:#f92672">fail</span>:
+        <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;Unable to remove the vSphere Snapshot of {{ inventory_hostname }}. Please be sure to delete this snapshot manually!&#34;</span>
+</code></pre></div><hr>
+<h2 id="rolessummarytasksmainyml">roles/summary/tasks/main.yml</h2>
+<p>This gives a really a nice output (using our log file and the blocks wrapped around everything so far) at the end of the patching Play.<br>
+We can easily see not only which servers failed to patch, but a summary of why, so we don&rsquo;t have to scroll back through thousands of lines of Ansible output to work it out.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Getting contents of output.log&#34;</span>
+  <span style="color:#f92672">shell</span>:
+    <span style="color:#f92672">cmd</span>: <span style="color:#ae81ff">tac /ansible/patching/output.log | grep &#39;#######################&#39; -m 1 -B 9999 | tac</span>
+  <span style="color:#f92672">register</span>: <span style="color:#ae81ff">log_contents</span>
+
+- <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Summary from the latest Playbook run&#34;</span>
+  <span style="color:#f92672">debug</span>:
+    <span style="color:#f92672">msg</span>: <span style="color:#e6db74">&#34;{{ log_contents.stdout_lines | join(&#39;\n&#39;) }}&#34;</span>
+</code></pre></div><hr>
+<p>Hopefully you find this Playbook useful.</p>
+<p>There&rsquo;s obviously a lot of code here, so if you spot anything I&rsquo;ve carried over from my working environment incorrectly either on this page or on <a href="https://github.com/0phoi5/ansible/tree/main/patching_playbook">my GitHub</a>, please do let me know via <em><a href="mailto:jackcollins1434@yahoo.com">jackcollins1434@yahoo.com</a></em>.</p>
+<hr>
+<p><a href="#top">Top of page</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="/tags/ansible/">ansible</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Created in Linux CLI using <a href="http://gohugo.io">Hugo</a></span><span>Self Hosted via Github and AWS Amplify</span><span><a href="/disclaimer">Disclaimer</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.644292943ae47eef02fcd64b11757aeb8caeeaebf473a823b62099edccac808e8d82689359f285e5d95994e5ad5ae3b9c1ccc281eb1828e67d0ba6630f95b832.js" integrity="sha512-ZEKSlDrkfu8C/NZLEXV664yu6uv0c6gjtiCZ7cysgI6NgmiTWfKF5dlZlOWtWuO5wczCgesYKOZ9C6ZjD5W4Mg==" crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>

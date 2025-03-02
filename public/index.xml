@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 03 Feb 2025 20:12:48 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Feb 2025 20:14:48 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Ansible patching Playbook</title>
+      <link>/articles/patching_playbook/</link>
+      <pubDate>Mon, 03 Feb 2025 20:14:48 +0100</pubDate>
+      
+      <guid>/articles/patching_playbook/</guid>
+      <description>A couple of years ago I completed the Red Hat Certified Specialist in Ansible Automation course and then took on full onus of patching 600+ Linux servers, where patching was still being done mostly manually.
+The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops.</description>
+    </item>
+    
     <item>
       <title>Some advanced commands for Linux administration</title>
       <link>/articles/advanced_commands/</link>
@@ -113,17 +124,6 @@ print(’\n’) # New line
 print(variable_name) # Print a str variable
 print(”””This string runs
 multiple lines!”””) # Multi-line string</description>
-    </item>
-    
-    <item>
-      <title>RPM / Yum - Fatal Error, run database recovery</title>
-      <link>/articles/rpm_db_fatalerror/</link>
-      <pubDate>Mon, 17 Apr 2023 12:31:14 +0100</pubDate>
-      
-      <guid>/articles/rpm_db_fatalerror/</guid>
-      <description>Scenario When running yum clean all, or yum update, you get an error similar to the following;
-error: rpmdb: BDB0113 Thread/process #/# failed: BDB1507 Thread died in Berkley DB library error: db5 error(-30973) from dbenv-&amp;gt;failchk BDB0087 DB_RUNRECOVERY: Fatal error, run database recovery error: cannot open Packages database in /var/lib/rpm CRITICAL:yum.main: Error: rpmdb open failed  Resolution Firstly, try clearing the yum cache and then rebuilding it, via;
-sudo rm -rf /var/cache/yum/* sudo yum makecache If that doesn&amp;rsquo;t resolve, kill all yum related processes, delete the cache and all metadata, and rebuild;</description>
     </item>
     
   </channel>
