@@ -14,7 +14,7 @@ tags:
 A couple of years ago I completed the *Red Hat Certified Specialist in Ansible Automation* course and then took on full onus of patching 600+ Linux servers, where patching was still being done mostly manually.  
 The solution was of course Ansible, and initially I created a large Playbook on the CLI of our administration server, which worked very well but needed a proper CI/CD solution.
 
-Fast forward a few months and I worked alongside colleagues within Platform Engineering to impliment my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops.
+Fast forward a few months and I worked alongside colleagues within Platform Engineering to implement my Playbook in to Git and Visual Studio Code, and then further on I was involved with getting the whole thing covered by Ansible Automation Platform (AAP) and Red Hat Satellite, and triggerable via Azure Devops.
 
 One would think that a Playbook for patching would be fairly simplistic (dnf update, reboot?), however there are a lot more stages to patching to be considered;
 
