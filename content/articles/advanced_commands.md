@@ -3,7 +3,7 @@ author:
   name: "Jack Collins"
 title: "Some useful commands for Linux administration"
 subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
-date: 2025-05-16T10:16:00+00:00
+date: 2025-05-16T10:16:00+01:00
 draft: false
 toc: false
 images:
