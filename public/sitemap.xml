@@ -17,15 +17,6 @@
     <loc>/tags/</loc>
     <lastmod>2025-02-03T20:14:48+01:00</lastmod>
   </url><url>
-    <loc>/tags/cheatsheet/</loc>
-    <lastmod>2025-02-03T20:12:48+01:00</lastmod>
-  </url><url>
-    <loc>/tags/linux/</loc>
-    <lastmod>2025-02-03T20:12:48+01:00</lastmod>
-  </url><url>
-    <loc>/articles/advanced_commands/</loc>
-    <lastmod>2025-02-03T20:12:48+01:00</lastmod>
-  </url><url>
     <loc>/articles/min_med_tech/</loc>
     <lastmod>2024-12-15T20:15:32+01:00</lastmod>
   </url><url>
@@ -43,6 +34,12 @@
   </url><url>
     <loc>/tags/error-resolution/</loc>
     <lastmod>2024-01-31T01:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/linux/</loc>
+    <lastmod>2024-01-31T01:00:00+01:00</lastmod>
+  </url><url>
+    <loc>/tags/cheatsheet/</loc>
+    <lastmod>2023-12-30T09:00:11+01:00</lastmod>
   </url><url>
     <loc>/articles/cron_vs_systemd/</loc>
     <lastmod>2023-12-30T09:00:11+01:00</lastmod>

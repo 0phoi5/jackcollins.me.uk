@@ -1,9 +1,9 @@
 ---
 author:
   name: "Jack Collins"
-title: "Some advanced commands for Linux administration"
+title: "Some useful commands for Linux administration"
 subtitle: "jackcollins.me.uk | Platform Engineer & Linux Admin | UK"
-date: 2025-02-03T20:12:48+01:00
+date: 2025-05-16T10:16:00+00:00
 draft: false
 toc: false
 images:
@@ -12,7 +12,7 @@ tags:
   - cheatsheet
 ---
 
-I will update this page as I come across more interesting and less-known commands for Linux Administration, for reference.
+I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
 
 ---
 
