@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 31 Jan 2024 01:00:00 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 May 2025 12:28:00 +0100</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some useful commands for Linux administration</title>
+      <link>/articles/advanced_commands/</link>
+      <pubDate>Fri, 16 May 2025 12:28:00 +0100</pubDate>
+      
+      <guid>/articles/advanced_commands/</guid>
+      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
+ Resource Management View the CPU load of a specific process only
+top -p $(pgrep -d, appserver)
+Limit the CPU usage of a process to 25%
+cpulimit -e backup.sh -l 25
+Migrate a running process to a different CPU core without restarting it
+taskset -p 2 &amp;lt;PID&amp;gt;
+Bind a process to specific CPU cores</description>
+    </item>
+    
     <item>
       <title>AWS curl to 169.254.169.254 failing, 401 Unauthorized</title>
       <link>/articles/ec2_imdsv2/</link>
@@ -28,22 +44,6 @@ aws ec2 create-image --instance-id $(curl -s http://169.</description>
       <description>What are Cron Jobs? What are Systemd Timers? Why use Systemd over Cron? Systemd Timer Example   What are Cron Jobs? Cron is a job scheduler that has been around on Unix based operating systems for a long time.
 It is used to run commands or scripts at specific intervals of time, for example backing up a server via a shell script every Thursday at 9pm.
 Cron uses something called the crontab, or Command Run On Table, to store it&amp;rsquo;s jobs, usually located under /var/spool/cron/.</description>
-    </item>
-    
-    <item>
-      <title>Some useful commands for Linux administration</title>
-      <link>/articles/advanced_commands/</link>
-      <pubDate>Tue, 16 May 2023 12:28:00 +0100</pubDate>
-      
-      <guid>/articles/advanced_commands/</guid>
-      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
- Resource Management View the CPU load of a specific process only
-top -p $(pgrep -d, appserver)
-Limit the CPU usage of a process to 25%
-cpulimit -e backup.sh -l 25
-Migrate a running process to a different CPU core without restarting it
-taskset -p 2 &amp;lt;PID&amp;gt;
-Bind a process to specific CPU cores</description>
     </item>
     
     <item>

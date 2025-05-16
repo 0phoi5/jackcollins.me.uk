@@ -7,7 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 03 Feb 2025 20:14:48 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 May 2025 12:28:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Some useful commands for Linux administration</title>
+      <link>/articles/advanced_commands/</link>
+      <pubDate>Fri, 16 May 2025 12:28:00 +0100</pubDate>
+      
+      <guid>/articles/advanced_commands/</guid>
+      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
+ Resource Management View the CPU load of a specific process only
+top -p $(pgrep -d, appserver)
+Limit the CPU usage of a process to 25%
+cpulimit -e backup.sh -l 25
+Migrate a running process to a different CPU core without restarting it
+taskset -p 2 &amp;lt;PID&amp;gt;
+Bind a process to specific CPU cores</description>
+    </item>
+    
     <item>
       <title>An Ansible patching Playbook</title>
       <link>/articles/patching_playbook/</link>
@@ -82,22 +98,6 @@ However, there is no easy way to delete the Images afterwards. Each AMI has unde
       <description>Often we&amp;rsquo;ll want to use Ansible to manage many servers, but some of those servers may not sit on the same area of the network. They might be in a Dematerialized Zone (DMZ) and only be accessible via a Bastion / Jumpbox server.
 We can configure the Ansible Server to recognise Jumpbox configuration, so that it runs Ansible Playbooks on the DMZ Server, as though it were directly available;
 Configuration  Firstly, make sure SSH keys are set up correctly.</description>
-    </item>
-    
-    <item>
-      <title>Some useful commands for Linux administration</title>
-      <link>/articles/advanced_commands/</link>
-      <pubDate>Tue, 16 May 2023 12:28:00 +0100</pubDate>
-      
-      <guid>/articles/advanced_commands/</guid>
-      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
- Resource Management View the CPU load of a specific process only
-top -p $(pgrep -d, appserver)
-Limit the CPU usage of a process to 25%
-cpulimit -e backup.sh -l 25
-Migrate a running process to a different CPU core without restarting it
-taskset -p 2 &amp;lt;PID&amp;gt;
-Bind a process to specific CPU cores</description>
     </item>
     
     <item>
