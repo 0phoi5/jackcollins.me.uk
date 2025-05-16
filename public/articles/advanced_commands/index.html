@@ -52,7 +52,7 @@ Migrate a running process to a different CPU core without restarting it
 taskset -p 2 &lt;PID&gt;
 Bind a process to specific CPU cores"><meta itemprop="datePublished" content="2025-02-03T20:12:48+01:00" />
 <meta itemprop="dateModified" content="2025-02-03T20:12:48+01:00" />
-<meta itemprop="wordCount" content="185"><meta itemprop="image" content="/images/profile_pic.png"/>
+<meta itemprop="wordCount" content="205"><meta itemprop="image" content="/images/profile_pic.png"/>
 <meta itemprop="keywords" content="linux,cheatsheet," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/images/profile_pic.png"/>
@@ -196,6 +196,10 @@ Bind a process to specific CPU cores" />
 <code>ip route add 192.168.2.0/24 dev eth1</code></p>
 <p>Execute a self-test on a NIC<br>
 <code>ethtool -t eth0</code></p>
+<hr>
+<h2 id="text-manipulation">Text Manipulation</h2>
+<p>Make the first &lsquo;column&rsquo; of a file lowercase, leave the rest as-is<br>
+<code>awk -F'\t' 'BEGIN{OFS=FS} {$1=tolower($1); print}' input.txt</code></p>
 <hr>
 <p><a href="#top">Top of page</a></p>
 

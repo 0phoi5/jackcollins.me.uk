@@ -61,4 +61,11 @@ Execute a self-test on a NIC
 
 ---
 
+## Text Manipulation
+
+Make the first 'column' of a file lowercase, leave the rest as-is  
+`awk -F'\t' 'BEGIN{OFS=FS} {$1=tolower($1); print}' input.txt`
+
+---
+
 [Top of page](#top)
