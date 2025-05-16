@@ -31,6 +31,22 @@ Configuration  Firstly, make sure SSH keys are set up correctly.</description>
     </item>
     
     <item>
+      <title>Some useful commands for Linux administration</title>
+      <link>/articles/advanced_commands/</link>
+      <pubDate>Tue, 16 May 2023 12:28:00 +0100</pubDate>
+      
+      <guid>/articles/advanced_commands/</guid>
+      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
+ Resource Management View the CPU load of a specific process only
+top -p $(pgrep -d, appserver)
+Limit the CPU usage of a process to 25%
+cpulimit -e backup.sh -l 25
+Migrate a running process to a different CPU core without restarting it
+taskset -p 2 &amp;lt;PID&amp;gt;
+Bind a process to specific CPU cores</description>
+    </item>
+    
+    <item>
       <title>Ansible asynchronous actions and polling</title>
       <link>/articles/ansible_async_poll/</link>
       <pubDate>Sun, 23 Apr 2023 16:41:40 +0100</pubDate>
@@ -64,22 +80,6 @@ multiple lines!”””) # Multi-line string</description>
       <guid>/articles/nmap/</guid>
       <description>Background Usage Examples Cheatsheet Official Documentation Drawbacks Similar Tools   Background Nmap, or &amp;lsquo;Network Mapper&amp;rsquo;, was originally conceived in 1997 by Gordon Lyon, included as an article in Phrack Magazine along with it&amp;rsquo;s source code. The community at the time were so impressed with it&amp;rsquo;s early capabilities, it was taken up as a collaberative project by the tech community, and remains so right up until today.
 Since it&amp;rsquo;s initial creation, Nmap has gone through many big updates, each adding more capabilities.</description>
-    </item>
-    
-    <item>
-      <title>Some useful commands for Linux administration</title>
-      <link>/articles/advanced_commands/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/articles/advanced_commands/</guid>
-      <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
- Resource Management View the CPU load of a specific process only
-top -p $(pgrep -d, appserver)
-Limit the CPU usage of a process to 25%
-cpulimit -e backup.sh -l 25
-Migrate a running process to a different CPU core without restarting it
-taskset -p 2 &amp;lt;PID&amp;gt;
-Bind a process to specific CPU cores</description>
     </item>
     
   </channel>
