@@ -52,7 +52,7 @@ Migrate a running process to a different CPU core without restarting it
 taskset -p 2 &lt;PID&gt;
 Bind a process to specific CPU cores"><meta itemprop="datePublished" content="2025-05-16T12:28:00+01:00" />
 <meta itemprop="dateModified" content="2025-05-16T12:28:00+01:00" />
-<meta itemprop="wordCount" content="208"><meta itemprop="image" content="/images/profile_pic.png"/>
+<meta itemprop="wordCount" content="239"><meta itemprop="image" content="/images/profile_pic.png"/>
 <meta itemprop="keywords" content="linux,cheatsheet," />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="/images/profile_pic.png"/>
@@ -200,6 +200,10 @@ Bind a process to specific CPU cores" />
 <h2 id="text-manipulation">Text Manipulation</h2>
 <p>Make the first &lsquo;column&rsquo; of a file lowercase, leave the rest as-is<br>
 <code>awk -F'\t' 'BEGIN{OFS=FS} {$1=tolower($1); print}' input.txt</code></p>
+<hr>
+<h2 id="aws-cli">AWS CLI</h2>
+<p>List all AWS EC2 instances in the current account, including instance ID, name and private and public IP addresses<br>
+<code>aws ec2 describe-instances --query &quot;Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name']|[0].Value, PrivateIpAddress, PublicIpAddress]&quot; --output text</code></p>
 <hr>
 <p><a href="#top">Top of page</a></p>
 

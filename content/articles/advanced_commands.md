@@ -68,4 +68,11 @@ Make the first 'column' of a file lowercase, leave the rest as-is
 
 ---
 
+## AWS CLI
+
+List all AWS EC2 instances in the current account, including instance ID, name and private and public IP addresses  
+`aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name']|[0].Value, PrivateIpAddress, PublicIpAddress]" --output text`
+
+---
+
 [Top of page](#top)
