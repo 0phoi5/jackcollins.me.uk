@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 16 May 2025 12:28:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 May 2025 09:47:00 +0100</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Some useful commands for Linux administration</title>
       <link>/articles/advanced_commands/</link>
-      <pubDate>Fri, 16 May 2025 12:28:00 +0100</pubDate>
+      <pubDate>Thu, 29 May 2025 09:47:00 +0100</pubDate>
       
       <guid>/articles/advanced_commands/</guid>
       <description>I will update this page as I come across more interesting and less-known commands for Linux Administration, for my and your reference.
