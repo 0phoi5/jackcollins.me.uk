@@ -196,6 +196,8 @@ Bind a process to specific CPU cores" />
 <code>ip route add 192.168.2.0/24 dev eth1</code></p>
 <p>Execute a self-test on a NIC<br>
 <code>ethtool -t eth0</code></p>
+<p>Using a list of hostnames in a file, test whether each one can reach the internet<br>
+<code>for i in $(cat hostnames.txt); do output=$(ssh -q $i "timeout 3 bash -c 'echo >/dev/tcp/1.1.1.1/443' && echo online || echo offline") echo "$i - $output"; done</code></p>
 <hr>
 <h2 id="text-manipulation">Text Manipulation</h2>
 <p>Make the first &lsquo;column&rsquo; of a file lowercase, leave the rest as-is<br>
