@@ -51,7 +51,7 @@ cpulimit -e backup.sh -l 25
 Migrate a running process to a different CPU core without restarting it
 taskset -p 2 &lt;PID&gt;
 Bind a process to specific CPU cores"><meta itemprop="datePublished" content="2025-05-29T09:47:00+01:00" />
-<meta itemprop="dateModified" content="2025-05-29T09:47:00+01:00" />
+<meta itemprop="dateModified" content="2025-09-09T09:47:00+01:00" />
 <meta itemprop="wordCount" content="239"><meta itemprop="image" content="/images/profile_pic.png"/>
 <meta itemprop="keywords" content="linux,cheatsheet," />
 <meta name="twitter:card" content="summary_large_image"/>
@@ -190,6 +190,9 @@ Bind a process to specific CPU cores" />
 <code>umount /mnt/secure &amp;&amp; cryptsetup luksClose secure_data</code></p>
 <p>Create a RAID 5 array using 3x specified disks<br>
 <code>mdadm --create --level=5 --raid-devices=3 /dev/md0 /dev/sdb /dev/sdc /dev/sdd</code></p>
+<p>Increase LV /mountpoint to have exactly 25G available, as a one-liner<br>
+<code>lv=$(df /mountpoint --output=source | tail -1); free=$(df --output=avail -BG /mountpoint | tail -1 | tr -dc 0-9); [ $free -lt 25 ] && lvresize -r -L +$((25 - free))G "$lv"
+</code></p>
 <hr>
 <h2 id="networking">Networking</h2>
 <p>Set up a static route so that all traffic to a specific IP goes through a specific network interface<br>
