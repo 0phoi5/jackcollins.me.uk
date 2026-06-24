@@ -62,7 +62,7 @@ disableHugoGeneratorInject = false
   # Home subtitle of the index page.
   #
   homeSubtitle = "Senior Platform Engineer"
-  homeSubtitle2 = "CompTIA Linux+ | Monitoring | Vulnerability Management | AWS | Ansible"
+  homeSubtitle2 = "CompTIA Linux+ | RHEL | AWS | Ansible | RH Satellite"
 
   # Set a background for the homepage
   # backgroundImage = "assets/images/background.jpg"
@@ -180,7 +180,7 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en]
-    subtitle  = "Linux Admin | Automation | Security | Monitoring | UK"
+    subtitle  = "CompTIA Linux+ | RHEL | AWS | Ansible | RH Satellite"
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
