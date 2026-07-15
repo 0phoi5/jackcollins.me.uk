@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Jack Collins</title>
+    <link>/tags/windows/</link>
+    <description>Recent content in windows on Jack Collins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 15 Jul 2026 08:00:00 +0100</lastBuildDate><atom:link href="/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting to the CTRL&#43;ALT&#43;DEL menu within multiple nested RDP sessions</title>
+      <link>/articles/rdp_ctrlaltdel/</link>
+      <pubDate>Wed, 15 Jul 2026 08:00:00 +0100</pubDate>
+      
+      <guid>/articles/rdp_ctrlaltdel/</guid>
+      <description>Just a short article today, but hopefully a useful one.
+If you have multiple nested RDP sessions, CTRL+ALT+DEL and CTRL+ALT+END won&amp;rsquo;t be sufficient to open the menu in order to reset your password, etc.
+On-screen keyboard might be useful via typing osk.exe in to the start menu, but that didn&amp;rsquo;t work for me either.
+What did work is to create a desktop shortcut to the following location, within the nested RDP session;</description>
+    </item>
+    
+  </channel>
+</rss>
