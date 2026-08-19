@@ -73,6 +73,9 @@ Make the first 'column' of a file lowercase, leave the rest as-is
 List all AWS EC2 instances in the current account, including instance ID, name and private and public IP addresses  
 `aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name']|[0].Value, PrivateIpAddress, PublicIpAddress]" --output text`
 
+Extract the json for all policies attached to a role  
+`for arn in $(aws iam list-attached-role-policies --role-name AWSReservedSSO_ROLENAME_XXXXXXXXXXXXXXXX --query 'AttachedPolicies[].PolicyArn' --output text); do name=$(basename "$arn"); ver=$(aws iam get-policy --policy-arn "$arn" --query 'Policy.DefaultVersionId' --output text); aws iam get-policy-version --policy-arn "$arn" --version-id "$ver" --query 'PolicyVersion.Document' --output json > "$HOME/$name.json"; done`
+
 ---
 
 [Top of page](#top)
