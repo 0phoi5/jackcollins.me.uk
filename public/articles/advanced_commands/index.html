@@ -204,6 +204,8 @@ Bind a process to specific CPU cores" />
 <h2 id="aws-cli">AWS CLI</h2>
 <p>List all AWS EC2 instances in the current account, including instance ID, name and private and public IP addresses<br>
 <code>aws ec2 describe-instances --query &quot;Reservations[*].Instances[*].[InstanceId, Tags[?Key=='Name']|[0].Value, PrivateIpAddress, PublicIpAddress]&quot; --output text</code></p>
+<p>Extract the json for all policies attached to a role<br>
+<code>for arn in $(aws iam list-attached-role-policies --role-name AWSReservedSSO_ROLENAME_XXXXXXXXXXXXXXXX --query 'AttachedPolicies[].PolicyArn' --output text); do name=$(basename "$arn"); ver=$(aws iam get-policy --policy-arn "$arn" --query 'Policy.DefaultVersionId' --output text); aws iam get-policy-version --policy-arn "$arn" --version-id "$ver" --query 'PolicyVersion.Document' --output json > "$HOME/$name.json"; done</code></p>
 <hr>
 <p><a href="#top">Top of page</a></p>
 
