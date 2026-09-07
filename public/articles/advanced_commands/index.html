@@ -200,6 +200,9 @@ Bind a process to specific CPU cores" />
 <h2 id="text-manipulation">Text Manipulation</h2>
 <p>Make the first &lsquo;column&rsquo; of a file lowercase, leave the rest as-is<br>
 <code>awk -F'\t' 'BEGIN{OFS=FS} {$1=tolower($1); print}' input.txt</code></p>
+<p>Break a file down in to chunks of base64, sometimes easier to handle than one giant chunk<br>
+<code>base64 -w 0 /tmp/large.file | fold -w 6000 | awk '{printf "CHUNK %04d\n%s\n", NR, $0}</code></p>
+---
 <hr>
 <h2 id="aws-cli">AWS CLI</h2>
 <p>List all AWS EC2 instances in the current account, including instance ID, name and private and public IP addresses<br>
