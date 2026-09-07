@@ -66,6 +66,9 @@ Execute a self-test on a NIC
 Make the first 'column' of a file lowercase, leave the rest as-is  
 `awk -F'\t' 'BEGIN{OFS=FS} {$1=tolower($1); print}' input.txt`
 
+Break a file down in to chunks of base64, sometimes easier to handle than one giant chunk  
+`base64 -w 0 /tmp/large.file | fold -w 6000 | awk '{printf "CHUNK %04d\n%s\n", NR, $0}`
+
 ---
 
 ## AWS CLI
